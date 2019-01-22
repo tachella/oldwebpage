@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <title>Julian Tachella &#8211; Image and Signal Processing researcher</title>
+    <title>Bayesian 3D Reconstruction Of Complex Scenes From Single-Photon Lidar Data &#8211; Julian Tachella</title>
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel="alternate" type="application/rss+xml" title="Julian Tachella &raquo; Feed" href="/feed/" />
@@ -41,10 +41,10 @@ img.emoji {
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.9.9" />
-<link rel="canonical" href="/" />
-<link rel='shortlink' href='/' />
-<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2F" />
-<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2F&#038;format=xml" />
+<link rel="canonical" href="/manipop/" />
+<link rel='shortlink' href='/?p=51' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fmanipop%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fmanipop%2F&#038;format=xml" />
             <style type="text/css" id="filterable-portfolio-inline-style">
                 .portfolio-terms {
                     border-bottom: 1px solid#4cc1be;
@@ -70,7 +70,7 @@ img.emoji {
             </style>
 			</head>
 
-<body class="home page-template-default page page-id-15">
+<body class="page-template-default page page-id-51">
 <div id="page" class="site">
  
 	<header id="masthead" class="site-header">
@@ -91,7 +91,7 @@ img.emoji {
 									<span class="mobile-menu-icon"><i class="icon-menu"></i></span>
 								</div>
 								<li id="site-navigation" class="main-navigation nav-item" role="navigation">
-									<div class="menu-primary-container"><ul id="primary-menu" class="main-menu nav"><li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item menu-item-22"><a href="/">Home</a></li>
+									<div class="menu-primary-container"><ul id="primary-menu" class="main-menu nav"><li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22"><a href="/">Home</a></li>
 <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="/publications/">Publications</a></li>
 <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="/portfolios/">Portfolios</a></li>
 </ul></div>								</li>
@@ -101,40 +101,35 @@ img.emoji {
 			</div>
 		</div>
 	</header><!-- #masthead -->
-		<div class="header-banner"> 
-		<img src="/wp-content/uploads/2019/01/cropped-me.jpg" width="1280" height="466" alt="Julian Tachella">
-	</div>
- 
-	<div class="portfolio-title-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6"><div class="title-wrap"><h6>Signal</h6>and<h2>image<span></span> researcher</h2></div></div>
-				<div class="col-md-3"></div>
-			</div>
-		</div>
-	</div>
-<div id="content" class="site-content">
+	<div id="content" class="site-content">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div id="primary" class="content-area">
 					<main id="main" class="site-main">
-						
-<article id="post-15" class="post-15 page type-page status-publish hentry">
 
+						
+<article id="post-51" class="post-51 page type-page status-publish hentry">
+
+		
+	
 	<div class="entry-content">
-		<p>My research covers the areas of Bayesian inference, Markov chain Monte Carlo methods (MCMC) and image processing. Currently, I am a PhD student in Heriot University under the supervision of <a href="https://scholar.google.co.uk/citations?user=hytsEdwAAAAJ&amp;hl=es&amp;oi=ao">Dr. Yoann Altmann</a>, <a href="https://scholar.google.co.uk/citations?user=vHgDZDMAAAAJ&amp;hl=es&amp;oi=ao">Prof. Jean-Yves Tourneret</a> and <a href="https://scholar.google.co.uk/citations?user=z9wnHv8AAAAJ&amp;hl=es&amp;oi=ao">Prof. Steve McLaughlin</a>. My PhD thesis focuses in Bayesian methods for inverse problems, with particular interest in low-photon imaging applications.</p>
+		<h5>Short presentation:</h5>
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/HSqEED6xjZ4?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<h5></h5>
+<h5>Abstract:</h5>
+<p>Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing, for each pixel, a histogram of time delays between emitted light pulses and detected photon arrivals. In a general setting, more than one surface can be observed in a single pixel. The problem of estimating the number of surfaces, their reflectivity and position becomes very challenging in the low-photon regime (which equates to short acquisition times) or relatively high background levels (i.e., strong ambient illumination). This paper presents a new approach to 3D reconstruction using single-photon, single-wavelength Lidar data, which is capable of identifying multiple surfaces in each pixel. Adopting a Bayesian approach, the 3D structure to be recovered is modelled as a marked point process and reversible jump Markov chain Monte Carlo (RJ-MCMC) moves are proposed to sample the posterior distribution of interest. In order to promote spatial correlation between points belonging to the same surface, we propose a prior that combines an area interaction process and a Strauss process. New RJ-MCMC dilation and erosion updates are presented to achieve an efficient exploration of the configuration space. To further reduce the computational load, we adopt a multiresolution approach, processing the data from a coarse to the finest scale. The experiments performed with synthetic and real data show that the algorithm obtains better reconstructions than other recently published optimization algorithms for lower execution times.</p>
+		
 	</div><!-- .entry-content -->
 
 </article>
-					</main>
-				</div>
+
+					</main><!-- #main -->
+				</div><!-- #primary -->
 			</div>
 		</div>
 	</div>
 </div>
-					
 	<footer id="colophon" class="site-footer">
 			 <div class="footer-bottom">
 			<div class="container">
