@@ -7,7 +7,7 @@
 	
 	
 	
-	<title>Bayesian 3D reconstruction of complex scenes from single-photon lidar data – Julián Tachella</title>
+	<title>Real-time color 3D reconstruction from single-photon lidar data – Julián Tachella</title>
 <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//s.w.org">
@@ -74,7 +74,6 @@ body { font-family: "Roboto", Arial, sans-serif; }
 
 
 
-
 		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 		<style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #e5e5e5; }
@@ -85,7 +84,7 @@ body.custom-background { background-color: #e5e5e5; }
 <meta name="msapplication-TileImage" content="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-300x300.jpg">
 <style id="kirki-inline-styles"></style></head>
 
-<body class="post-template-default single single-post postid-44 single-format-standard custom-background col-1c full-width mobile-menu skew-active logged-out">
+<body class="post-template-default single single-post postid-272 single-format-standard custom-background col-1c full-width mobile-menu skew-active logged-out">
 
 
 <a class="skip-link screen-reader-text" href="#page">Skip to content</a>
@@ -130,30 +129,31 @@ body.custom-background { background-color: #e5e5e5; }
 				<div class="main-inner group">
 <div class="content">
 	
-			<article id="post-44" class="post-44 post type-post status-publish format-standard has-post-thumbnail hentry category-lidar">	
+			<article id="post-272" class="post-272 post type-post status-publish format-standard has-post-thumbnail hentry category-lidar">	
 			
 			<div class="post-wrapper group">
 				<div class="entry-media">
 									</div>
 				<header class="entry-header group">
-					<h1 class="entry-title">Bayesian 3D reconstruction of complex scenes from single-photon lidar data</h1>
+					<h1 class="entry-title">Real-time color 3D reconstruction from single-photon lidar data</h1>
 					<div class="entry-meta">
-						<span class="entry-date"><i class="far fa-calendar"></i>January 21, 2019</span>
+						<span class="entry-date"><i class="far fa-calendar"></i>December 13, 2019</span>
 												<span class="entry-author"><i class="far fa-user"></i><a href="https://tachella.github.io/author/julitakl/" title="Posts by Julián" rel="author">Julián</a></span>
 						<span class="entry-category"><a href="https://tachella.github.io/category/lidar/" rel="category tag">Lidar</a></span>
 					</div>
 				</header>
 				<div class="entry-content">
 					<div class="entry themeform">	
-						<p><strong>Authors:</strong> J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
-<p><b>Journal:</b> <em>SIAM Journal on Imaging Sciences</em></p>
-<p><strong>Full paper:</strong>  <a href="https://epubs.siam.org/doi/10.1137/18M1183972">https://epubs.siam.org/doi/10.1137/18M1183972</a></p>
-<p><strong>Online codes:</strong> <a href="https://gitlab.com/Tachella/Manipop">https://gitlab.com/Tachella/Manipop</a></p>
-<h5>Short presentation:</h5>
-<div class="video-container"><iframe title="MANIPOP algorithm for 3D reconstruction of complex scenes" width="740" height="416" src="https://www.youtube.com/embed/pk0tLCCqnVk?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-<h5></h5>
+						<p><strong>Authors:</strong> J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret</p>
+<p><strong>Conference:</strong> IEEE CAMSAP 2019, Guadaloupe, West Indies</p>
+<p><strong>Full paper: </strong>To appear soon</p>
+<p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/real-time-single-photon-lidar">gitlab.com/Tachella/real-time-single-photon-lidar</a></p>
+<p style="text-align: center;"><strong>Slides:</strong><br>
+<iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/5uG3E0L8H6r7yu" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"> </iframe></p>
+<div style="margin-bottom: 5px; text-align: center;"><strong> <a title="CAMSAP19 " href="//www.slideshare.net/JulinAndrsTachella/camsap19" target="_blank" rel="noopener noreferrer">CAMSAP19 </a> </strong> from <strong><a href="https://www.slideshare.net/JulinAndrsTachella" target="_blank" rel="noopener noreferrer">Julián Andrés Tachella</a></strong></div>
 <h5>Abstract:</h5>
-<p>Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing, for each pixel, a histogram of time delays between emitted light pulses and detected photon arrivals. In a general setting, more than one surface can be observed in a single pixel. The problem of estimating the number of surfaces, their reflectivity and position becomes very challenging in the low-photon regime (which equates to short acquisition times) or relatively high background levels (i.e., strong ambient illumination). This paper presents a new approach to 3D reconstruction using single-photon, single-wavelength Lidar data, which is capable of identifying multiple surfaces in each pixel. Adopting a Bayesian approach, the 3D structure to be recovered is modelled as a marked point process and reversible jump Markov chain Monte Carlo (RJ-MCMC) moves are proposed to sample the posterior distribution of interest. In order to promote spatial correlation between points belonging to the same surface, we propose a prior that combines an area interaction process and a Strauss process. New RJ-MCMC dilation and erosion updates are presented to achieve an efficient exploration of the configuration space. To further reduce the computational load, we adopt a multiresolution approach, processing the data from a coarse to the finest scale. The experiments performed with synthetic and real data show that the algorithm obtains better reconstructions than other recently published optimization algorithms for lower execution times.</p>
+<p>Single-photon lidar devices can acquire 3D data at very long range with high precision. Moreover, recent advances in lidar<br>
+arrays have enabled acquisitions at very high frame rates. However, these devices place a severe bottleneck on the reconstruction algorithms, which have to handle very large volumes of noisy data. Recently, real-time 3D reconstruction of distributed surfaces has been demonstrated obtaining information at one wavelength. Here, we propose a new algorithm that achieves color 3D reconstruction without increasing the execution time nor the acquisition process of the real-time single-wavelength reconstruction system. The algorithm uses a coded aperture that compresses the data by considering a subset of the wavelengths per pixel. The reconstruction algorithm is based on a plug-and-play denoising framework, which benefits from off-the-shelf point cloud and image denoisers. Experiments using real lidar data show the competitivity of the proposed method.</p>
 												<div class="clear"></div>				
 					</div>
 				</div>
@@ -165,8 +165,8 @@ body.custom-background { background-color: #e5e5e5; }
 										
 										
 						<ul class="post-nav group">
-		<li class="next"><a href="https://tachella.github.io/2019/05/05/estimating-the-widths-of-the-returns/" rel="next"><i class="fas fa-chevron-right"></i><strong>Next</strong> <span>3D Reconstruction using single-photon lidar data: Estimating the widths of the returns</span></a></li>
-		<li class="previous"><a href="https://tachella.github.io/2018/09/10/bayesian-restoration-of-high-dimensional-photon-starved-images/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous</strong> <span>Bayesian restoration of high-dimensional photon-starved images</span></a></li>
+		<li class="next">
+		<li class="previous"><a href="https://tachella.github.io/2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous</strong> <span>Real-time 3D reconstruction from single-photon lidar data using plug-and-play point cloud denoisers</span></a></li>
 	</ul>
 
 										
