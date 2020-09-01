@@ -11,14 +11,14 @@
 	<title>Julián Tachella</title>
 	<atom:link href="https://tachella.github.io/feed/" rel="self" type="application/rss+xml" />
 	<link>http://tachella.github.io/</link>
-	<description>julian.tachella@ed.ac.uk</description>
-	<lastBuildDate>Mon, 06 Jan 2020 13:47:51 +0000</lastBuildDate>
+	<description></description>
+	<lastBuildDate>Tue, 01 Sep 2020 17:44:19 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=5.3.2</generator>
+	<generator>https://wordpress.org/?v=5.5</generator>
 
 <image>
 	<url>https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-150x150.jpg</url>
@@ -28,17 +28,77 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>The neural tangent denoiser</title>
+		<link>https://tachella.github.io/2020/09/01/the-neural-tangent-denoiser/</link>
+		
+		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Tue, 01 Sep 2020 13:31:04 +0000</pubDate>
+				<category><![CDATA[neural networks]]></category>
+		<guid isPermaLink="false">https://tachella.github.io/?p=344</guid>
+
+					<description><![CDATA[Authors: J. Tachella, J. Tang and Mike Davies Full paper: https://arxiv.org/abs/2006.02379 Online codes: https://gitlab.com/Tachella/neural_tangent_denoiser Convolutional neural networks (CNNs) are a well-established tool for solving computational imaging problems.  It has been recently shown that, despite being highly overparameterized (more weights than pixels), networks trained with a single corrupted image can still perform as well as fully trained&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, J. Tang and Mike Davies</p>
+<p><strong>Full paper: </strong><a href="https://arxiv.org/abs/2006.02379">https://arxiv.org/abs/2006.02379</a></p>
+<p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/neural_tangent_denoiser">https://gitlab.com/Tachella/neural_tangent_denoiser</a></p>
+<p>Convolutional neural networks (CNNs) are a well-established tool for solving computational imaging problems.  It has been recently shown that, despite being highly overparameterized (more weights than pixels), networks trained with a single corrupted image can still perform as well as fully trained networks (<em>a.k.a. <a href="https://dmitryulyanov.github.io/deep_image_prior">the deep image prior</a></em>).  These results highlight that <strong>CNNs posses a very powerful learning bias towards natural images</strong>, which explains their great success in recent years. Multiple intriguing question arise:</p>
+<ol>
+<li>What is the learning bias?</li>
+<li>Are neural networks performing something similar to other existing tools in signal processing?</li>
+<li>Is the existing theory able to explain this phenomenon?</li>
+</ol>
+<p>In this paper, we make a first step towards answering these questions, using recent theoretical insights of infinitely wide networks (<em>a.k.a. <a href="https://arxiv.org/abs/1806.07572">the neural tangent kernel</a></em>), elucidating formal links between CNNs and well-known non-local patch denoisers, such as non-local means.</p>
+<p><img loading="lazy" class="size-large wp-image-349 aligncenter" src="https://tachella.github.io/wp-content/uploads/2020/09/non_local-1024x200.png" alt="" width="740" height="145" srcset="https://tachella.github.io/wp-content/uploads/2020/09/non_local-1024x200.png 1024w, https://tachella.github.io/wp-content/uploads/2020/09/non_local-300x59.png 300w, https://tachella.github.io/wp-content/uploads/2020/09/non_local-768x150.png 768w, https://tachella.github.io/wp-content/uploads/2020/09/non_local-1536x300.png 1536w, https://tachella.github.io/wp-content/uploads/2020/09/non_local-520x102.png 520w, https://tachella.github.io/wp-content/uploads/2020/09/non_local-940x183.png 940w, https://tachella.github.io/wp-content/uploads/2020/09/non_local.png 1793w" sizes="(max-width: 740px) 100vw, 740px" /></p>
+<p>Non-local means uses the following non-local similarity function:</p>
+<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-8da5ad2a4f7f312ce398933f1d67e66c_l3.png" height="22" width="245" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91;&#107;&#40;&#121;&#95;&#105;&#44;&#32;&#121;&#95;&#106;&#41;&#32;&#61;&#32;&#92;&#101;&#120;&#112;&#40;&#45;&#124;&#124;&#121;&#95;&#105;&#45;&#121;&#95;&#106;&#124;&#124;&#94;&#50;&#47;&#92;&#115;&#105;&#103;&#109;&#97;&#94;&#50;&#41;&#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p>where <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-bb3c186e5c65fcd066bb23dec8f4e48a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#121;&#95;&#105;" title="Rendered by QuickLaTeX.com" height="12" width="14" style="vertical-align: -4px;"/> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-96175939671012225c6ebb5b4b67a92d_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#121;&#95;&#106;" title="Rendered by QuickLaTeX.com" height="14" width="15" style="vertical-align: -6px;"/> are small image patches (e.g. <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-101f8b3f33bf66bfc25df43f96acd9fa_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#53;&#92;&#116;&#105;&#109;&#101;&#115;&#32;&#53;" title="Rendered by QuickLaTeX.com" height="13" width="39" style="vertical-align: 0px;"/> pixels) around the pixels <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-695d9d59bd04859c6c99e7feb11daab6_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#105;" title="Rendered by QuickLaTeX.com" height="12" width="6" style="vertical-align: 0px;"/> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-43c82d5bb00a7568d935a12e3bd969dd_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#106;" title="Rendered by QuickLaTeX.com" height="16" width="9" style="vertical-align: -4px;"/>. The filter matrix <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4caed22919a1780df1b6310b338b904e_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#87;" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"/> is constructed as <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4f312419c8b16c4d57ea5a27efdab8d6_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#87;&#32;&#61;&#32;&#92;&#116;&#101;&#120;&#116;&#123;&#100;&#105;&#97;&#103;&#125;&#40;&#92;&#102;&#114;&#97;&#99;&#123;&#49;&#125;&#123;&#49;&#94;&#84;&#75;&#125;&#41;&#32;&#75;" title="Rendered by QuickLaTeX.com" height="23" width="138" style="vertical-align: -7px;"/> and the simplest denoising procedure consists of applying <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4caed22919a1780df1b6310b338b904e_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#87;" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"/> to the (vectorized) noisy image <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-0af556714940c351c933bba8cf840796_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#121;" title="Rendered by QuickLaTeX.com" height="12" width="9" style="vertical-align: -4px;"/>, that is <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-6f80189a4cb464104d4c7fa32992ac55_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#104;&#97;&#116;&#123;&#122;&#125;&#61;&#87;&#32;&#121;" title="Rendered by QuickLaTeX.com" height="16" width="61" style="vertical-align: -4px;"/>. There are more sophisticated procedures such as twicing, where the filtering matrix is applied iteratively to the residual:</p>
+<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4e73c94ecbd4126fa7c4e2469453c264_l3.png" height="22" width="178" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91;&#122;&#94;&#123;&#107;&#43;&#49;&#125;&#32;&#61;&#32;&#122;&#94;&#123;&#107;&#125;&#32;&#43;&#32;&#87;&#40;&#121;&#45;&#122;&#94;&#123;&#107;&#125;&#41;&#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p> This procedure trades bias (over-smooth estimates) for variance (noisy estimates), and is stopped when a good balance is achieved. <strong>How does this relate to a convolutional neural network trained with a single image?</strong> It turns out that, as the network&#8217;s width increases, standard gradient descent optimization of the squared <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-dd583ea6096b89172262dd03722f6731_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#101;&#108;&#108;&#95;&#50;" title="Rendered by QuickLaTeX.com" height="15" width="14" style="vertical-align: -3px;"/> loss follows the twicing process, with a (fixed!) filter matrix <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-74a348aef7edf0abf99651a0b53e54ad_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#87;&#61;&#75;" title="Rendered by QuickLaTeX.com" height="12" width="59" style="vertical-align: 0px;"/> where the<strong> pixel affinity function is available in closed form and only depends on the architecture of the network! </strong>For example, a simple single-hidden layer network with a filter of <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-d30f9396f90049805a7462b39118fd1c_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#107;&#92;&#116;&#105;&#109;&#101;&#115;&#32;&#107;" title="Rendered by QuickLaTeX.com" height="12" width="40" style="vertical-align: 0px;"/> pixels, corresponds to a non-local similarity function</p>
+<p class="ql-center-displayed-equation" style="line-height: 38px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-04987d3a6ffb3a929cbd7ecd46e90366_l3.png" height="38" width="325" class="ql-img-displayed-equation quicklatex-auto-format" alt="&#92;&#91;&#107;&#40;&#121;&#95;&#105;&#44;&#32;&#121;&#95;&#106;&#41;&#32;&#61;&#32;&#92;&#102;&#114;&#97;&#99;&#123;&#124;&#124;&#121;&#95;&#105;&#124;&#124;&#32;&#124;&#124;&#121;&#95;&#106;&#124;&#124;&#125;&#123;&#92;&#112;&#105;&#125;&#32;&#40;&#92;&#115;&#105;&#110;&#92;&#112;&#104;&#105;&#43;&#40;&#92;&#112;&#105;&#45;&#92;&#112;&#104;&#105;&#41;&#92;&#99;&#111;&#115;&#92;&#112;&#104;&#105;&#41;&#92;&#93;" title="Rendered by QuickLaTeX.com"/></p>
+<p> where <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-5b2be26c0c1341f54b29baddda771346_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#92;&#112;&#104;&#105;" title="Rendered by QuickLaTeX.com" height="16" width="11" style="vertical-align: -4px;"/> is the angle between patches <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-bb3c186e5c65fcd066bb23dec8f4e48a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#121;&#95;&#105;" title="Rendered by QuickLaTeX.com" height="12" width="14" style="vertical-align: -4px;"/> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-96175939671012225c6ebb5b4b67a92d_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#121;&#95;&#106;" title="Rendered by QuickLaTeX.com" height="14" width="15" style="vertical-align: -6px;"/> of <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-d30f9396f90049805a7462b39118fd1c_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="&#107;&#92;&#116;&#105;&#109;&#101;&#115;&#32;&#107;" title="Rendered by QuickLaTeX.com" height="12" width="40" style="vertical-align: 0px;"/> pixels each. Hence, we can compute the implicit filter in closed-form, without need to train a very large network!</p>
+<p>Our analysis reveals that a neural network that, while the NTK theory accurately predicts the filter associated with networks trained using standard gradient descent, it falls short to explain the behavior of networks trained using the popular Adam optimizer. The latter achieves a larger change of weights in hidden layers, adapting the non-local filtering function during training. We evaluate our findings via extensive image denoising experiments. Please see the paper for more details!</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Advances in single-photon lidar for autonomous vehicles</title>
+		<link>https://tachella.github.io/2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/</link>
+		
+		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Sat, 01 Aug 2020 12:17:56 +0000</pubDate>
+				<category><![CDATA[Lidar]]></category>
+		<guid isPermaLink="false">https://tachella.github.io/?p=337</guid>
+
+					<description><![CDATA[Authors: J. Rapp, J. Tachella, Y. Altmann, S. McLaughlin and V. K. Goyal Journal: IEEE Signal Processing Magazine Full paper: https://ieeexplore.ieee.org/document/9022496/ We have put together a comprehensive survey of the latest signal processing techniques for single-photon lidar, covering Statistical modeling of single-photon waveforms (Poisson statistics, dead-time and discretization effects, etc.) 3D reconstruction algorithms (single depth and&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Rapp, J. Tachella, Y. Altmann, S. McLaughlin and V. K. Goyal</p>
+<p><strong>Journal:</strong> IEEE Signal Processing Magazine</p>
+<p><strong>Full paper: </strong><a href="https://ieeexplore.ieee.org/document/9022496/">https://ieeexplore.ieee.org/document/9022496/</a></p>
+<p>We have put together a <strong>comprehensive survey of the latest signal processing techniques for single-photon lidar</strong>, covering</p>
+<ol>
+<li>Statistical modeling of single-photon waveforms (Poisson statistics, dead-time and discretization effects, etc.)</li>
+<li>3D reconstruction algorithms (single depth and multiple depth).</li>
+</ol>
+<p>These algorithms are explained in the <strong>context of autonomous vehicles, an emerging and very promising application of single-photon lidar technology</strong>. See the paper for more details! Code related to some of the algorithms discussed in the paper can be found <a href="https://tachella.github.io/code/">here</a> and <a href="https://ieeexplore.ieee.org/document/7932527/algorithms?tabFilter=code#algorithms">here</a>.</p>
+<p><strong>Abstract: </strong>The safety and success of autonomous vehicles (AVs) depend on their ability to accurately map and respond to their surroundings in real time. One of the most promising recent technologies for depth mapping is single-photon lidar (SPL), which measures the time of flight of individual photons. The long-range capabilities (kilometers), excellent depth resolution (centimeters), and use of low-power (eye-safe) laser sources renders this modality a strong candidate for use in AVs. While presenting unique opportunities, the remarkable sensitivity of single-photon detectors introduces several signal processing challenges. The discrete nature of photon counting and the particular design of the detection devices means the acquired signals cannot be treated as arising in a linear system with additive Gaussian noise. Moreover, the number of useful photon detections may be small despite a large data volume, thus requiring careful modeling and algorithmic design for real-time performance. This article discusses the main working principles of SPL and summarizes recent advances in signal processing techniques for this modality, highlighting promising applications in AVs as well as a number of challenges for vehicular lidar that cannot be solved by better hardware alone.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
 		<title>Real-time 3D color imaging with single-photon lidar data</title>
 		<link>https://tachella.github.io/2019/12/13/real-time-color-3d-reconstruction-from-single-photon-lidar-data/</link>
-				<pubDate>Fri, 13 Dec 2019 15:16:45 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Fri, 13 Dec 2019 15:16:45 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=272</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret Conference: IEEE CAMSAP 2019, Guadaloupe, West Indies Full paper: To appear soon Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Slides: CAMSAP19 from Julián Andrés Tachella Abstract: Single-photon lidar devices can acquire 3D data at very long range with high precision. Moreover, recent advances in lidar arrays have enabled acquisitions&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret Conference: IEEE CAMSAP 2019, Guadaloupe, West Indies Full paper:&#160;https://ieeexplore.ieee.org/document/9022496/ Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Slides: CAMSAP19 from Julián Andrés Tachella Abstract: Single-photon lidar devices can acquire 3D data at very long range with high precision. Moreover, recent advances in lidar arrays have enabled acquisitions at very high&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret</p>
 <p><strong>Conference:</strong> IEEE CAMSAP 2019, Guadaloupe, West Indies</p>
-<p><strong>Full paper: </strong>To appear soon</p>
+<p><strong>Full paper:&nbsp;</strong><a href="https://ieeexplore.ieee.org/document/9022496/">https://ieeexplore.ieee.org/document/9022496/</a></p>
 <p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/real-time-single-photon-lidar">gitlab.com/Tachella/real-time-single-photon-lidar</a></p>
 <p style="text-align: center;"><strong>Slides:</strong></p>
 <p style="text-align: center;"><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/lliCs4XomO9fAA" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen"> </iframe></p>
@@ -47,17 +107,21 @@
 <p>Single-photon lidar devices can acquire 3D data at very long range with high precision. Moreover, recent advances in lidar<br />
 arrays have enabled acquisitions at very high frame rates. However, these devices place a severe bottleneck on the reconstruction algorithms, which have to handle very large volumes of noisy data. Recently, real-time 3D reconstruction of distributed surfaces has been demonstrated obtaining information at one wavelength. Here, we propose a new algorithm that achieves color 3D reconstruction without increasing the execution time nor the acquisition process of the real-time single-wavelength reconstruction system. The algorithm uses a coded aperture that compresses the data by considering a subset of the wavelengths per pixel. The reconstruction algorithm is based on a plug-and-play denoising framework, which benefits from off-the-shelf point cloud and image denoisers. Experiments using real lidar data show the competitivity of the proposed method.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>Real-time 3D reconstruction from single-photon lidar data using plug-and-play point cloud denoisers</title>
 		<link>https://tachella.github.io/2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/</link>
-				<pubDate>Tue, 29 Oct 2019 11:42:10 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Tue, 29 Oct 2019 11:42:10 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=210</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: Nature Communications Full paper:  www.nature.com/articles/s41467-019-12943-7 Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Abstract: Single-photon lidar has emerged as a prime candidate technology for depth imaging through challenging environments. Until now, a major limitation has been the significant amount of time&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: Nature Communications Full paper:  www.nature.com/articles/s41467-019-12943-7 Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Abstract: Single-photon lidar has emerged as a prime candidate technology for depth imaging through challenging environments. Until now, a major limitation has been the significant amount of time&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
 <p><strong>Journal:</strong> <em>Nature Communications</em></p>
 <p><strong>Full paper:  </strong><a href="https://www.nature.com/articles/s41467-019-12943-7">www.nature.com/articles/s41467-019-12943-7</a></p>
 <p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/real-time-single-photon-lidar">gitlab.com/Tachella/real-time-single-photon-lidar</a></p>
@@ -65,34 +129,42 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 <h5>Abstract:</h5>
 <p>Single-photon lidar has emerged as a prime candidate technology for depth imaging through challenging environments. Until now, a major limitation has been the significant amount of time required for the analysis of the recorded data. Here we show a new computational framework for real-time three-dimensional (3D) scene reconstruction from single-photon data. By combining statistical models with highly scalable computational tools from the computer graphics community, we demonstrate 3D reconstruction of complex outdoor scenes with processing times of the order of 20 ms, where the lidar data was acquired in broad daylight from distances up to 320 metres. The proposed method can handle an unknown number of surfaces in each pixel, allowing for target detection and imaging through cluttered scenes. This enables robust, real-time target reconstruction of complex moving scenes, paving the way for single-photon lidar at video rates for practical 3D imaging applications.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>Bayesian 3D Reconstruction of subsampled multispectral lidar signals</title>
 		<link>https://tachella.github.io/2019/10/01/multispectral-lidar/</link>
-				<pubDate>Tue, 01 Oct 2019 11:07:29 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Tue, 01 Oct 2019 11:07:29 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=189</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Journal: IEEE Transactions on Computational Imaging Full paper: https://ieeexplore.ieee.org/document/8854866 Online codes: https://gitlab.com/Tachella/musapop Abstract: Light detection and ranging (lidar) single-photon devices capture range and intensity information from a 3D scene. This modality enables long range 3D reconstruction with high range precision and&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Journal: IEEE Transactions on Computational Imaging Full paper: https://ieeexplore.ieee.org/document/8854866 Online codes: https://gitlab.com/Tachella/musapop Abstract: Light detection and ranging (lidar) single-photon devices capture range and intensity information from a 3D scene. This modality enables long range 3D reconstruction with high range precision and&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
 <p><strong>Journal: </strong><em>IEEE Transactions on Computational Imaging</em></p>
 <p><strong>Full paper:</strong> <a href="https://ieeexplore.ieee.org/document/8854866">https://ieeexplore.ieee.org/document/8854866</a></p>
 <p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/musapop">https://gitlab.com/Tachella/musapop</a></p>
 <h5>Abstract:</h5>
 <p>Light detection and ranging (lidar) single-photon devices capture range and intensity information from a 3D scene. This modality enables long range 3D reconstruction with high range precision and low laser power. A multispectral single-photon lidar system provides additional spectral diversity, allowing the discrimination of different materials. However, the main drawback of such systems can be the long acquisition time needed to collect enough photons in each spectral band. In this work, we tackle this problem in two ways: first, we propose a Bayesian 3D reconstruction algorithm that is able to find multiple surfaces per pixel, using few photons, i.e., shorter acquisitions. In contrast to previous algorithms, the novel method processes the jointly all the spectral bands, obtaining better reconstructions using less photon detections. The proposed model promotes spatial correlation between neighbouring points within a given surface using spatial point processes. Secondly, we account for different spatial and spectral subsampling schemes, which reduce the total number of measurements, without significant degradation of the reconstruction performance. In this way, the total acquisition time, memory requirements and computational time can be significantly reduced. The experiments performed using both synthetic and real single-photon lidar data demonstrate the advantages of tailored sampling schemes over random alternatives. Furthermore, the proposed algorithm yields better estimates than other existing methods for multi-surface reconstruction using multispectral Lidar data.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>Fast surface detection in single-photon lidar waveforms</title>
 		<link>https://tachella.github.io/2019/09/05/fast-surface-detection-in-single-photon-lidar-waveforms/</link>
-				<pubDate>Thu, 05 Sep 2019 11:20:00 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Thu, 05 Sep 2019 11:20:00 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=194</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Conference: European Signal Processing Conference (EUSIPCO), La Coruña, Spain (2019) Full paper: https://pureapps2.hw.ac.uk/ws/portalfiles/portal/25197816/PID5986663.pdf Extension: A multi-resolution version of this method was published here. Online codes: https://gitlab.com/Tachella/lidardetection Presentation slides: EUSIPCO19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) devices can&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors</strong>: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Conference: European Signal Processing Conference (EUSIPCO), La Coruña, Spain (2019) Full paper: https://pureapps2.hw.ac.uk/ws/portalfiles/portal/25197816/PID5986663.pdf Extension: A multi-resolution version of this method was published here. Online codes: https://gitlab.com/Tachella/lidardetection Presentation slides: EUSIPCO19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) devices can&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors</strong>: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
 <p><strong>Conference:</strong> European Signal Processing Conference (EUSIPCO), La Coruña, Spain (2019)</p>
 <p><strong>Full paper:</strong> <a href="https://pureapps2.hw.ac.uk/ws/portalfiles/portal/25197816/PID5986663.pdf">https://pureapps2.hw.ac.uk/ws/portalfiles/portal/25197816/PID5986663.pdf</a></p>
 <p><strong>Extension: </strong>A multi-resolution version of this method was published <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11138/111380T/On-fast-object-detection-using-single-photon-lidar-data/10.1117/12.2527685.short?SSO=1">here</a>.</p>
@@ -104,17 +176,21 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 <h5>Abstract:</h5>
 <p>Single-photon light detection and ranging (lidar) devices can be used to obtain range and reflectivity information from 3D scenes. However, reconstructing the 3D surfaces from the raw waveforms can be very challenging, in particular when the number of spurious background detections is large compared to the number of signal detections. In this paper, we introduce a new and fast detection algorithm, which can be used to assess the presence of objects/surfaces in each waveform, allowing only the histograms where the imaged surfaces are present to be further processed. The method is compared to state-of-the-art 3D reconstruction methods using synthetic and real single-photon data and the results illustrate its benefits for fast and robust target detection using single-photon data.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>3D Reconstruction using single-photon lidar data: Exploiting the widths of the returns</title>
 		<link>https://tachella.github.io/2019/05/05/estimating-the-widths-of-the-returns/</link>
-				<pubDate>Sun, 05 May 2019 10:43:53 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Sun, 05 May 2019 10:43:53 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=181</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, J-.Y. Tourneret and S. McLaughlin Conference: International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brighton, 2019. Full-text: https://ieeexplore.ieee.org/abstract/document/8683075 Short presentation: ICASSP19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) data can be used to capture depth and intensity profiles of a 3D scene. In a general setting, the&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<h5>Authors:</h5>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, J-.Y. Tourneret and S. McLaughlin Conference: International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brighton, 2019. Full-text: https://ieeexplore.ieee.org/abstract/document/8683075 Short presentation: ICASSP19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) data can be used to capture depth and intensity profiles of a 3D scene. In a general setting, the&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<h5>Authors:</h5>
 <p>J. Tachella, Y. Altmann, J-.Y. Tourneret and S. McLaughlin</p>
 <p><strong>Conference:</strong> International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brighton, 2019.</p>
 <p><strong>Full-text:</strong> <a href="https://ieeexplore.ieee.org/abstract/document/8683075">https://ieeexplore.ieee.org/abstract/document/8683075</a></p>
@@ -125,17 +201,21 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 <h5>Abstract:</h5>
 <p>Single-photon light detection and ranging (lidar) data can be used to capture depth and intensity profiles of a 3D scene. In a general setting, the scenes can have an unknown number of surfaces per pixel (semi-transparent surfaces or outdoor measurements), high background noise (strong ambient illumination), can be acquired by systems with a broad instrumental response (non-parallel laser beam with respect to the target surface) and with possibly high attenuating media (underwater conditions). The existing methods generally tackle only a subset of these problems and can fail in a more general scenario. In this paper, we propose a new 3D reconstruction algorithm that can handle all the aforementioned difficulties. The novel algorithm estimates the broadening of the impulse response, considers the attenuation induced by scattering media, while allowing for multiple surfaces per pixel. A series of experiments performed in real long-range and underwater lidar datasets demonstrate the performance of the proposed method.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>Bayesian 3D reconstruction of complex scenes from single-photon lidar data</title>
 		<link>https://tachella.github.io/2019/01/21/bayesian-3d-reconstruction-of-complex-scenes-from-single-photon-lidar-data/</link>
-				<pubDate>Mon, 21 Jan 2019 17:29:26 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Mon, 21 Jan 2019 17:29:26 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=44</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: SIAM Journal on Imaging Sciences Full paper:  https://epubs.siam.org/doi/10.1137/18M1183972 Online codes: https://gitlab.com/Tachella/Manipop Short presentation: Abstract: Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing,&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: SIAM Journal on Imaging Sciences Full paper:  https://epubs.siam.org/doi/10.1137/18M1183972 Online codes: https://gitlab.com/Tachella/Manipop Short presentation: Abstract: Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing,&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
 <p><b>Journal:</b> <em>SIAM Journal on Imaging Sciences</em></p>
 <p><strong>Full paper:</strong>  <a href="https://epubs.siam.org/doi/10.1137/18M1183972">https://epubs.siam.org/doi/10.1137/18M1183972</a></p>
 <p><strong>Online codes:</strong> <a href="https://gitlab.com/Tachella/Manipop">https://gitlab.com/Tachella/Manipop</a></p>
@@ -145,17 +225,21 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 <h5>Abstract:</h5>
 <p>Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing, for each pixel, a histogram of time delays between emitted light pulses and detected photon arrivals. In a general setting, more than one surface can be observed in a single pixel. The problem of estimating the number of surfaces, their reflectivity and position becomes very challenging in the low-photon regime (which equates to short acquisition times) or relatively high background levels (i.e., strong ambient illumination). This paper presents a new approach to 3D reconstruction using single-photon, single-wavelength Lidar data, which is capable of identifying multiple surfaces in each pixel. Adopting a Bayesian approach, the 3D structure to be recovered is modelled as a marked point process and reversible jump Markov chain Monte Carlo (RJ-MCMC) moves are proposed to sample the posterior distribution of interest. In order to promote spatial correlation between points belonging to the same surface, we propose a prior that combines an area interaction process and a Strauss process. New RJ-MCMC dilation and erosion updates are presented to achieve an efficient exploration of the configuration space. To further reduce the computational load, we adopt a multiresolution approach, processing the data from a coarse to the finest scale. The experiments performed with synthetic and real data show that the algorithm obtains better reconstructions than other recently published optimization algorithms for lower execution times.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 		<item>
 		<title>Bayesian restoration of high-dimensional photon-starved images</title>
 		<link>https://tachella.github.io/2018/09/10/bayesian-restoration-of-high-dimensional-photon-starved-images/</link>
-				<pubDate>Mon, 10 Sep 2018 11:03:07 +0000</pubDate>
+		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Mon, 10 Sep 2018 11:03:07 +0000</pubDate>
 				<category><![CDATA[Low-photon imaging]]></category>
-
 		<guid isPermaLink="false">https://tachella.github.io/?p=187</guid>
-				<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Pereyra, J-.Y. Tourneret and S. McLaughlin Conference: European Conference on Signal Processing (EUSIPCO), Rome, Italy, 2018. Full-text: https://ieeexplore.ieee.org/abstract/document/8553175 Codes: https://gitlab.com/Tachella/photon-starved-samplers Short presentation: Bayesian restoration of high-dimensional photon-starved images from Julián Andrés Tachella Abstract: This paper investigates different algorithms to perform image restoration from single-photon measurements corrupted with Poisson noise. The restoration&#46;&#46;&#46;]]></description>
-								<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, M. Pereyra, J-.Y. Tourneret and S. McLaughlin</p>
+
+					<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Pereyra, J-.Y. Tourneret and S. McLaughlin Conference: European Conference on Signal Processing (EUSIPCO), Rome, Italy, 2018. Full-text: https://ieeexplore.ieee.org/abstract/document/8553175 Codes: https://gitlab.com/Tachella/photon-starved-samplers Short presentation: Bayesian restoration of high-dimensional photon-starved images from Julián Andrés Tachella Abstract: This paper investigates different algorithms to perform image restoration from single-photon measurements corrupted with Poisson noise. The restoration&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, M. Pereyra, J-.Y. Tourneret and S. McLaughlin</p>
 <p><strong>Conference:</strong><em> European Conference on Signal Processing (EUSIPCO), Rome, Italy, 2018.</em></p>
 <p><strong>Full-text:</strong> <a href="https://ieeexplore.ieee.org/abstract/document/8553175">https://ieeexplore.ieee.org/abstract/document/8553175</a></p>
 <p><strong>Codes:</strong> <a href="https://gitlab.com/Tachella/photon-starved-samplers">https://gitlab.com/Tachella/photon-starved-samplers</a></p>
@@ -167,6 +251,9 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 <h5>Abstract:</h5>
 <p>This paper investigates different algorithms to perform image restoration from single-photon measurements corrupted with Poisson noise. The restoration problem is formulated in a Bayesian framework and several state-of-the-art Monte Carlo samplers are considered to estimate the unknown image and quantify its uncertainty. The different samplers are compared through a series of experiments conducted with synthetic images. The results demonstrate the scaling properties of the proposed samplers as the dimensionality of the problem increases and the number of photons decreases. Moreover, our experiments show that for a certain photon budget (i.e., acquisition time of the imaging device), downsampling the observations can yield better reconstruction results.</p>
 ]]></content:encoded>
-										</item>
+					
+		
+		
+			</item>
 	</channel>
 </rss>

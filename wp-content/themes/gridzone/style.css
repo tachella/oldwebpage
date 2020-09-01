@@ -22,20 +22,6 @@ strong {font-weight: 600;}
 .group:after {clear: both;}
 .group {zoom: 1;}
 .fa, .fab, .fal, .far, .fas {width: 1em;text-align: center;}
-.sharrre-header .share .fa:before, .sharrre-footer .share .fa:before {font-family: "Font Awesome 5 Brands";font-style: normal;font-variant: normal;text-rendering: auto;line-height: 1;}
-.sharrre-header .fa-twitter:before {content: "";}
-.sharrre-header .fa-facebook-square:before {content: "";}
-.sharrre-header .fa-pinterest:before {content: "";}
-.sharrre-header .fa-linkedin-square:before {content: "";}
-.sharrre-header .count .fa:before, .sharrre-footer .count .fa:before, .alx-tabs-nav i:before {font-family: "Font Awesome 5 Free";font-weight: 900;font-style: normal;font-variant: normal;text-rendering: auto;line-height: 1;}
-.sharrre-header .count .fa-plus:before {content: "";}
-.sharrre-footer .count .fa-plus:before {content: "";}
-.sharrre-footer .fa-twitter:before {content: "";}
-.sharrre-footer .fa-facebook-square:before {content: "";}
-.alx-tabs-nav .fa-clock-o:before {content: "";}
-.alx-tabs-nav .fa-star:before {content: "";}
-.alx-tabs-nav .fa-comments-o:before {content: "";}
-.alx-tabs-nav .fa-tags:before {content: "";}
 body {font-family: "Titillium",Arial,sans-serif;}
 @font-face {font-family: "Titillium";src: url("fonts/titillium-light-webfont.eot");src: url("fonts/titillium-light-webfont.svg#titillium-light-webfont") format("svg"),url("fonts/titillium-light-webfont.eot?#iefix") format("embedded-opentype"),url("fonts/titillium-light-webfont.woff") format("woff"),url("fonts/titillium-light-webfont.ttf") format("truetype");font-weight: 300;font-style: normal;}
 @font-face {font-family: "Titillium";src: url("fonts/titillium-lightitalic-webfont.eot");src: url("fonts/titillium-lightitalic-webfont.svg#titillium-lightitalic-webfont") format("svg"),url("fonts/titillium-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("fonts/titillium-lightitalic-webfont.woff") format("woff"),url("fonts/titillium-lightitalic-webfont.ttf") format("truetype");font-weight: 300;font-style: italic;}
@@ -120,23 +106,24 @@ h1, h2, h3, h4, h5, h6 {color: #333;font-weight: 300;-ms-word-wrap: break-word;w
 .entry li {margin: 0;}
 .entry ul li, .entry ol ul li {list-style: square;}
 .entry ol li, .entry ol ul ol li {list-style: decimal;}
+.entry .wp-block-image figcaption, .entry .wp-block-audio figcaption, .entry .wp-block-embed figcaption {font-size: 14px;text-align: center;}
 .entry .wp-block-image {}
-.entry .wp-block-gallery {padding: 0;}
-.entry .wp-block-gallery {margin-left: 0;}
+.entry .wp-block-gallery {padding: 0;margin-left: 0;}
+.entry .wp-block-gallery .blocks-gallery-grid {margin: 0;padding: 0;}
 .entry .wp-block-gallery .blocks-gallery-item figcaption {box-sizing: border-box;}
 .entry .wp-block-cover {}
-.entry .wp-block-quote {}
+.entry .wp-block-quote {margin-bottom: 20px;}
+.entry .wp-block-quote.is-large {padding-left: 50px;}
 .entry .wp-block-audio {}
 .entry .wp-block-file {}
 .entry .wp-block-file a.wp-block-file__button {color: #fff;}
 .entry .wp-block-embed {}
 .entry .wp-block-classic {}
-.entry .wp-block-pullquote {font-weight: 400;padding: 0;}
-.entry .wp-block-pullquote.alignleft {margin-right: 2em;max-width: 305px;}
-.entry .wp-block-pullquote.alignright {margin-left: 2em;max-width: 305px;}
-.entry .wp-block-pullquote blockquote {padding-left: 0;text-align: left;}
-.entry .wp-block-pullquote blockquote:before {display: none;}
-.entry .wp-block-pullquote blockquote p {line-height: 1.4em;color: #444;}
+.entry .wp-block-pullquote {padding-top: 0;padding-bottom: 0;}
+.entry .wp-block-pullquote.alignleft {margin-right: 2em;}
+.entry .wp-block-pullquote.alignright {margin-left: 2em;}
+.entry .wp-block-pullquote blockquote {padding-left: 50px;text-align: left;}
+.entry .wp-block-pullquote blockquote p {line-height: 1.4em;}
 .entry .wp-block-code {}
 .entry .wp-block-code code {background: none;}
 .entry .wp-block-custom {}
@@ -681,6 +668,8 @@ li #reply-title {font-size: 0;margin: 0 !important;padding: 0;height: 0;border-t
 .logged-in #reply-title {margin-bottom: 20px;}
 .logged-in #commentform p.comment-form-comment {margin-top: 10px;}
 .logged-in #commentform p.comment-form-comment label {display: none;}
+#commentform .comment-form-cookies-consent {padding: 10px 0;}
+#commentform .comment-form-cookies-consent label {display: inline;}
 .wp-pagenavi {text-align: right;text-align: center;font-weight: 600;line-height: 20px;float: none;margin-right: -2px;}
 .wp-pagenavi a, .wp-pagenavi span {color: #aaa;font-size: 16px;padding: 9px 14px;display: inline-block;margin: 0 1px 10px;}
 .wp-pagenavi span.pages {font-size: 16px;font-weight: 400;display: block;margin-bottom: 1em !important;border: none !important;}
