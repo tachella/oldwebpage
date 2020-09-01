@@ -8,12 +8,25 @@
 	
 	
 	<title>The neural tangent denoiser – Julián Tachella</title>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$'],['\\(','\\)']], 
+    processEscapes: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore|editor-rich-text'
+  }
+};
+
+</script>
 <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//s.w.org">
 
 
-<link rel="stylesheet" id="wp-quicklatex-format-css" href="https://tachella.github.io/wp-content/plugins/wp-quicklatex/css/quicklatex-format.css" type="text/css" media="all">
 <link rel="stylesheet" id="wp-block-library-css" href="https://tachella.github.io/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="gridzone-style-css" href="https://tachella.github.io/wp-content/themes/gridzone/style.css" type="text/css" media="all">
 <style id="gridzone-style-inline-css" type="text/css">
@@ -66,7 +79,6 @@ body { font-family: "Roboto", Arial, sans-serif; }
 <script type="text/javascript" src="https://tachella.github.io/wp-includes/js/jquery/jquery.js" id="jquery-js"></script>
 <script type="text/javascript" src="https://tachella.github.io/wp-content/plugins/alx-extensions/js/jquery.sharrre.min.js" id="alx-ext-sharrre-js"></script>
 <script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/slick.min.js" id="gridzone-slick-js"></script>
-<script type="text/javascript" src="https://tachella.github.io/wp-content/plugins/wp-quicklatex/js/wp-quicklatex-frontend.js" id="wp-quicklatex-frontend-js"></script>
 
 
 
@@ -159,13 +171,17 @@ body.custom-background { background-color: #e5e5e5; }
 <p>In this paper, we make a first step towards answering these questions, using recent theoretical insights of infinitely wide networks (<em>a.k.a. <a href="https://arxiv.org/abs/1806.07572">the neural tangent kernel</a></em>), elucidating formal links between CNNs and well-known non-local patch denoisers, such as non-local means.</p>
 <p><img loading="lazy" class="size-large wp-image-349 aligncenter" src="https://tachella.github.io/wp-content/uploads/2020/09/non_local-1024x200.png" alt="" width="740" height="145" srcset="https://tachella.github.io/wp-content/uploads/2020/09/non_local-1024x200.png 1024w,https://tachella.github.io/wp-content/uploads/2020/09/non_local-300x59.png 300w,https://tachella.github.io/wp-content/uploads/2020/09/non_local-768x150.png 768w,https://tachella.github.io/wp-content/uploads/2020/09/non_local-1536x300.png 1536w,https://tachella.github.io/wp-content/uploads/2020/09/non_local-520x102.png 520w,https://tachella.github.io/wp-content/uploads/2020/09/non_local-940x183.png 940w,https://tachella.github.io/wp-content/uploads/2020/09/non_local.png 1793w" sizes="(max-width: 740px) 100vw, 740px"></p>
 <p>Non-local means uses the following non-local similarity function:</p>
-<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno">   </span><span class="ql-left-eqno">   </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-8da5ad2a4f7f312ce398933f1d67e66c_l3.png" height="22" width="245" class="ql-img-displayed-equation quicklatex-auto-format" alt="\[k(y_i, y_j) = \exp(-||y_i-y_j||^2/\sigma^2)\]" title="Rendered by QuickLaTeX.com"></p>
-<p>where <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-bb3c186e5c65fcd066bb23dec8f4e48a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="y_i" title="Rendered by QuickLaTeX.com" height="12" width="14" style="vertical-align: -4px;"> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-96175939671012225c6ebb5b4b67a92d_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="y_j" title="Rendered by QuickLaTeX.com" height="14" width="15" style="vertical-align: -6px;"> are small image patches (e.g. <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-101f8b3f33bf66bfc25df43f96acd9fa_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="5\times 5" title="Rendered by QuickLaTeX.com" height="13" width="39" style="vertical-align: 0px;"> pixels) around the pixels <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-695d9d59bd04859c6c99e7feb11daab6_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="i" title="Rendered by QuickLaTeX.com" height="12" width="6" style="vertical-align: 0px;"> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-43c82d5bb00a7568d935a12e3bd969dd_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="j" title="Rendered by QuickLaTeX.com" height="16" width="9" style="vertical-align: -4px;">. The filter matrix <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4caed22919a1780df1b6310b338b904e_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="W" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"> is constructed as <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4f312419c8b16c4d57ea5a27efdab8d6_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="W = \text{diag}(\frac{1}{1^TK}) K" title="Rendered by QuickLaTeX.com" height="23" width="138" style="vertical-align: -7px;"> and the simplest denoising procedure consists of applying <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4caed22919a1780df1b6310b338b904e_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="W" title="Rendered by QuickLaTeX.com" height="12" width="19" style="vertical-align: 0px;"> to the (vectorized) noisy image <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-0af556714940c351c933bba8cf840796_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="y" title="Rendered by QuickLaTeX.com" height="12" width="9" style="vertical-align: -4px;">, that is <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-6f80189a4cb464104d4c7fa32992ac55_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="\hat{z}=W y" title="Rendered by QuickLaTeX.com" height="16" width="61" style="vertical-align: -4px;">. There are more sophisticated procedures such as twicing, where the filtering matrix is applied iteratively to the residual:</p>
-<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno">   </span><span class="ql-left-eqno">   </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-4e73c94ecbd4126fa7c4e2469453c264_l3.png" height="22" width="178" class="ql-img-displayed-equation quicklatex-auto-format" alt="\[z^{k+1} = z^{k} + W(y-z^{k})\]" title="Rendered by QuickLaTeX.com"></p>
-<p> This procedure trades bias (over-smooth estimates) for variance (noisy estimates), and is stopped when a good balance is achieved. <strong>How does this relate to a convolutional neural network trained with a single image?</strong> It turns out that, as the network’s width increases, standard gradient descent optimization of the squared <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-dd583ea6096b89172262dd03722f6731_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="\ell_2" title="Rendered by QuickLaTeX.com" height="15" width="14" style="vertical-align: -3px;"> loss follows the twicing process, with a (fixed!) filter matrix <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-74a348aef7edf0abf99651a0b53e54ad_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="W=K" title="Rendered by QuickLaTeX.com" height="12" width="59" style="vertical-align: 0px;"> where the<strong> pixel affinity function is available in closed form and only depends on the architecture of the network! </strong>For example, a simple single-hidden layer network with a filter of <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-d30f9396f90049805a7462b39118fd1c_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="k\times k" title="Rendered by QuickLaTeX.com" height="12" width="40" style="vertical-align: 0px;"> pixels, corresponds to a non-local similarity function</p>
-<p class="ql-center-displayed-equation" style="line-height: 38px;"><span class="ql-right-eqno">   </span><span class="ql-left-eqno">   </span><img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-04987d3a6ffb3a929cbd7ecd46e90366_l3.png" height="38" width="325" class="ql-img-displayed-equation quicklatex-auto-format" alt="\[k(y_i, y_j) = \frac{||y_i|| ||y_j||}{\pi} (\sin\phi+(\pi-\phi)\cos\phi)\]" title="Rendered by QuickLaTeX.com"></p>
-<p> where <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-5b2be26c0c1341f54b29baddda771346_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="\phi" title="Rendered by QuickLaTeX.com" height="16" width="11" style="vertical-align: -4px;"> is the angle between patches <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-bb3c186e5c65fcd066bb23dec8f4e48a_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="y_i" title="Rendered by QuickLaTeX.com" height="12" width="14" style="vertical-align: -4px;"> and <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-96175939671012225c6ebb5b4b67a92d_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="y_j" title="Rendered by QuickLaTeX.com" height="14" width="15" style="vertical-align: -6px;"> of <img loading="lazy" src="https://tachella.github.io/wp-content/ql-cache/quicklatex.com-d30f9396f90049805a7462b39118fd1c_l3.png" class="ql-img-inline-formula quicklatex-auto-format" alt="k\times k" title="Rendered by QuickLaTeX.com" height="12" width="40" style="vertical-align: 0px;"> pixels each. Hence, we can compute the implicit filter in closed-form, without need to train a very large network!</p>
+<p>$$ k(y_i, y_j) = \exp(-||y_i-y_j||^2/\sigma^2)$$<br>where $y_i$ and $y_j$ are small image patches (e.g. $5\times 5$ pixels) around the pixels $i$ and $j$. The filter matrix $W$ is constructed as $W = \text{diag}(\frac{1}{1^TK}) K$ and the simplest denoising procedure consists of applying $W$ to the (vectorized) noisy image $y$, that is $\hat{z}=W y$. There are more sophisticated procedures such as twicing, where the filtering matrix is applied iteratively to the residual:<br>$$z^{k+1} = z^{k} + W(y-z^{k})$$ This procedure trades bias (over-smooth estimates) for variance (noisy estimates), and is stopped when a good balance is achieved. <strong>How does this relate to a convolutional neural network trained with a single image?</strong> It turns out that, as the network’s width increases, standard gradient descent optimization of the squared $\ell_2$ loss follows the twicing process, with a (fixed!) filter matrix $W=K$ where the<strong> pixel affinity function is available in closed form and only depends on the architecture of the network! </strong>For example, a simple single-hidden layer network with a filter of $k\times k$ pixels, corresponds to a non-local similarity function$$ k(y_i, y_j) = \frac{||y_i|| ||y_j||}{\pi} (\sin\phi+(\pi-\phi)\cos\phi)$$ where $\phi$ is the angle between patches $y_i$ and $y_j$ of $k\times k$ pixels each. Hence, we can compute the implicit filter in closed-form, without need to train a very large network!</p>
 <p>Our analysis reveals that a neural network that, while the NTK theory accurately predicts the filter associated with networks trained using standard gradient descent, it falls short to explain the behavior of networks trained using the popular Adam optimizer. The latter achieves a larger change of weights in hidden layers, adapting the non-local filtering function during training. We evaluate our findings via extensive image denoising experiments. Please see the paper for more details!</p>
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container">
+<p></p>
+</div></div>
+
+
+
+<p></p>
 												<div class="clear"></div>				
 					</div>
 				</div>
@@ -227,6 +243,7 @@ body.custom-background { background-color: #e5e5e5; }
 	
 </div>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js?ver=5.5" id="mathjax-js"></script>
 <script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jquery.fitvids.js" id="gridzone-fitvids-js"></script>
 <script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jq-sticky-anything.min.js" id="gridzone-jq-sticky-anything-js"></script>
 <script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/imagesloaded.pkgd.min.js" id="gridzone-imagesloaded-js"></script>
