@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+	
+	<title>Real-time 3D reconstruction from single-photon lidar data using plug-and-play point cloud denoisers – Julián Tachella</title>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$'],['\\(','\\)']], 
+    processEscapes: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore|editor-rich-text'
+  }
+};
+
+</script>
+<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+
+
+<link rel="stylesheet" id="wp-block-library-css" href="https://tachella.github.io/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="gridzone-style-css" href="https://tachella.github.io/wp-content/themes/gridzone/style.css" type="text/css" media="all">
+<style id="gridzone-style-inline-css" type="text/css">
+body { font-family: "Roboto", Arial, sans-serif; }
+
+.single .post-wrapper { max-width: 1124px; }
+				
+
+.single .entry-header,
+.single .entry-footer,
+.single .entry > *:not(.alignfull) { max-width: 1097px; }
+				
+
+.page .post-wrapper { max-width: 1065px; }
+				
+
+.page .entry-header,
+.page .entry-footer,
+.page .entry > *:not(.alignfull) { max-width: 953px; }
+				
+
+.toggle-search,
+#profile-image img,
+.masonry-item .masonry-inner,
+.masonry-item .entry-category a,
+.pagination ul li a,
+.post-wrapper,
+.author-bio,
+.sharrre-container,
+.post-nav,
+.comment-tabs li a,
+#commentform,
+.alx-tab img,
+.alx-posts img,
+.infinite-scroll #infinite-handle span { border-radius: 0px; }
+.masonry-item img { border-radius: 0px 0px 0 0; }
+.toggle-search.active,
+.col-2cl .sidebar .widget { border-radius:  0px 0 0 0px; }
+.search-expand,
+.col-2cr .sidebar .widget { border-radius:  0 0px 0px 0; }
+#footer-bottom #back-to-top { border-radius: 0 0 0px 0px; }
+				
+.site-title a img { max-height: 59px; }
+.site-title a, .site-description { color: #353535; }
+
+</style>
+<link rel="stylesheet" id="gridzone-responsive-css" href="https://tachella.github.io/wp-content/themes/gridzone/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="gridzone-font-awesome-css" href="https://tachella.github.io/wp-content/themes/gridzone/fonts/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="roboto-css" href="//fonts.googleapis.com/css?family=Roboto%3A400%2C300italic%2C300%2C400italic%2C700&subset=latin%2Clatin-ext&ver=5.6.1" type="text/css" media="all">
+<script type="text/javascript" src="https://tachella.github.io/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-includes/js/jquery/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/plugins/alx-extensions/js/jquery.sharrre.min.js" id="alx-ext-sharrre-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/slick.min.js" id="gridzone-slick-js"></script>
+
+
+
+
+
+
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #e5e5e5; }
+</style>
+	<link rel="icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-150x150.jpg" sizes="32x32">
+<link rel="icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-200x200.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-200x200.jpg">
+<meta name="msapplication-TileImage" content="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-300x300.jpg">
+<style id="kirki-inline-styles"></style></head>
+
+<body class="post-template-default single single-post postid-210 single-format-standard custom-background col-1c full-width mobile-menu skew-active logged-out">
+
+
+<a class="skip-link screen-reader-text" href="#page">Skip to content</a>
+
+<div id="wrapper">
+	
+	<div id="header-sticky">
+		<header id="header" class="hide-on-scroll-down">
+
+			<div class="group">
+				<p class="site-title"><a href="https://tachella.github.io/" rel="home">Julián Tachella</a></p>
+									<p class="site-description"></p>
+								
+									<nav class="nav-container group" id="nav-header">
+						<div class="nav-toggle"><i class="fas fa-bars"></i></div>
+						<div class="nav-text"></div>
+						<div class="nav-wrap container"><ul id="menu-menu" class="nav container-inner group"><li id="menu-item-313" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-313"><a href="https://tachella.github.io">Publications</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22"><a href="https://tachella.github.io/home/">About me</a></li>
+<li id="menu-item-134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134"><a href="https://tachella.github.io/presentations/">Presentations</a></li>
+<li id="menu-item-305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-305"><a href="https://tachella.github.io/code/">Code</a></li>
+</ul></div>				
+					</nav>
+								
+									<nav class="nav-container group" id="nav-mobile">
+						<div class="nav-toggle"><i class="fas fa-bars"></i></div>
+						<div class="nav-text"></div>
+						<div class="nav-wrap container"><ul id="menu-menu-1" class="nav container-inner group"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-313"><a href="https://tachella.github.io">Publications</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22"><a href="https://tachella.github.io/home/">About me</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134"><a href="https://tachella.github.io/presentations/">Presentations</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-305"><a href="https://tachella.github.io/code/">Code</a></li>
+</ul></div>									
+					</nav>
+								
+			</div>
+			
+		</header>
+	</div>
+	
+	<div class="sidebar s2 group">
+					</div>
+	
+	
+	<div class="container" id="page">
+		<div class="container-inner">			
+			<div class="main">
+				<div class="main-inner group">
+<div class="content">
+	
+			<article id="post-210" class="post-210 post type-post status-publish format-standard has-post-thumbnail hentry category-lidar">	
+			
+			<div class="post-wrapper group">
+				<div class="entry-media">
+									</div>
+				<header class="entry-header group">
+					<h1 class="entry-title">Real-time 3D reconstruction from single-photon lidar data using plug-and-play point cloud denoisers</h1>
+					<div class="entry-meta">
+						<span class="entry-date"><i class="far fa-calendar"></i>October 29, 2019</span>
+												<span class="entry-author"><i class="far fa-user"></i><a href="https://tachella.github.io/author/julitakl/" title="Posts by Julián" rel="author">Julián</a></span>
+						<span class="entry-category"><a href="https://tachella.github.io/category/lidar/" rel="category tag">Lidar</a></span>
+					</div>
+				</header>
+				<div class="entry-content">
+					<div class="entry themeform">	
+						<p><strong>Authors:</strong> J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
+<p><strong>Journal:</strong> <em>Nature Communications</em></p>
+<p><strong>Full paper:  </strong><a href="https://www.nature.com/articles/s41467-019-12943-7">www.nature.com/articles/s41467-019-12943-7</a></p>
+<p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/real-time-single-photon-lidar">gitlab.com/Tachella/real-time-single-photon-lidar</a></p>
+<div class="video-container"><iframe title="Real-time 3D reconstruction of complex scenes using single-photon Lidar" width="740" height="416" src="https://www.youtube.com/embed/PzCcAoypUfM?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<h5>Abstract:</h5>
+<p>Single-photon lidar has emerged as a prime candidate technology for depth imaging through challenging environments. Until now, a major limitation has been the significant amount of time required for the analysis of the recorded data. Here we show a new computational framework for real-time three-dimensional (3D) scene reconstruction from single-photon data. By combining statistical models with highly scalable computational tools from the computer graphics community, we demonstrate 3D reconstruction of complex outdoor scenes with processing times of the order of 20 ms, where the lidar data was acquired in broad daylight from distances up to 320 metres. The proposed method can handle an unknown number of surfaces in each pixel, allowing for target detection and imaging through cluttered scenes. This enables robust, real-time target reconstruction of complex moving scenes, paving the way for single-photon lidar at video rates for practical 3D imaging applications.</p>
+												<div class="clear"></div>				
+					</div>
+				</div>
+				<div class="entry-footer group">
+					
+										
+					<div class="clear"></div>
+					
+										
+										
+						<ul class="post-nav group">
+		<li class="next"><a href="https://tachella.github.io/2019/12/13/real-time-color-3d-reconstruction-from-single-photon-lidar-data/" rel="next"><i class="fas fa-chevron-right"></i><strong>Next</strong> <span>Real-time 3D color imaging with single-photon lidar data</span></a></li>
+		<li class="previous"><a href="https://tachella.github.io/2019/10/01/multispectral-lidar/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous</strong> <span>Bayesian 3D Reconstruction of subsampled multispectral lidar signals</span></a></li>
+	</ul>
+
+										
+				</div>
+			</div>
+
+		</article>
+
+				
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<footer id="footer">
+	
+					
+				
+		<div id="footer-bottom">
+			
+			<a id="back-to-top" href="#"><i class="fas fa-angle-up"></i></a>
+				
+			<div class="pad group">
+				
+				<div class="grid one-full">
+					
+										
+					<div id="copyright">
+													<p>Copyright © Julián Tachella 2020. Contact: first.last@ed.ac.uk</p>
+											</div>
+					
+										
+										
+				</div>
+							
+			</div>
+
+		</div>
+
+	</footer>
+	
+</div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js?ver=5.6.1" id="mathjax-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jquery.fitvids.js" id="gridzone-fitvids-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jq-sticky-anything.min.js" id="gridzone-jq-sticky-anything-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/imagesloaded.pkgd.min.js" id="gridzone-imagesloaded-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/masonry.pkgd.min.js" id="gridzone-masonry-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/scripts.js" id="gridzone-scripts-js"></script>
+	<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	</body>
+</html>
