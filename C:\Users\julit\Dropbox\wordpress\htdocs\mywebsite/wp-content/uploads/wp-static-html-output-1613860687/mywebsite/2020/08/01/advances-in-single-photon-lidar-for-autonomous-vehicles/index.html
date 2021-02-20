@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+	
+	<title>Advances in single-photon lidar for autonomous vehicles – Julián Tachella</title>
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$'],['\\(','\\)']], 
+    processEscapes: true
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore|editor-rich-text'
+  }
+};
+
+</script>
+<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+
+
+<link rel="stylesheet" id="wp-block-library-css" href="https://tachella.github.io/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="gridzone-style-css" href="https://tachella.github.io/wp-content/themes/gridzone/style.css" type="text/css" media="all">
+<style id="gridzone-style-inline-css" type="text/css">
+body { font-family: "Roboto", Arial, sans-serif; }
+
+.single .post-wrapper { max-width: 1124px; }
+				
+
+.single .entry-header,
+.single .entry-footer,
+.single .entry > *:not(.alignfull) { max-width: 1097px; }
+				
+
+.page .post-wrapper { max-width: 1065px; }
+				
+
+.page .entry-header,
+.page .entry-footer,
+.page .entry > *:not(.alignfull) { max-width: 953px; }
+				
+
+.toggle-search,
+#profile-image img,
+.masonry-item .masonry-inner,
+.masonry-item .entry-category a,
+.pagination ul li a,
+.post-wrapper,
+.author-bio,
+.sharrre-container,
+.post-nav,
+.comment-tabs li a,
+#commentform,
+.alx-tab img,
+.alx-posts img,
+.infinite-scroll #infinite-handle span { border-radius: 0px; }
+.masonry-item img { border-radius: 0px 0px 0 0; }
+.toggle-search.active,
+.col-2cl .sidebar .widget { border-radius:  0px 0 0 0px; }
+.search-expand,
+.col-2cr .sidebar .widget { border-radius:  0 0px 0px 0; }
+#footer-bottom #back-to-top { border-radius: 0 0 0px 0px; }
+				
+.site-title a img { max-height: 59px; }
+.site-title a, .site-description { color: #353535; }
+
+</style>
+<link rel="stylesheet" id="gridzone-responsive-css" href="https://tachella.github.io/wp-content/themes/gridzone/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="gridzone-font-awesome-css" href="https://tachella.github.io/wp-content/themes/gridzone/fonts/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="roboto-css" href="//fonts.googleapis.com/css?family=Roboto%3A400%2C300italic%2C300%2C400italic%2C700&subset=latin%2Clatin-ext&ver=5.6.1" type="text/css" media="all">
+<script type="text/javascript" src="https://tachella.github.io/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-includes/js/jquery/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/plugins/alx-extensions/js/jquery.sharrre.min.js" id="alx-ext-sharrre-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/slick.min.js" id="gridzone-slick-js"></script>
+
+
+
+
+
+
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #e5e5e5; }
+</style>
+	<link rel="icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-150x150.jpg" sizes="32x32">
+<link rel="icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-200x200.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-200x200.jpg">
+<meta name="msapplication-TileImage" content="https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-300x300.jpg">
+<style id="kirki-inline-styles"></style></head>
+
+<body class="post-template-default single single-post postid-337 single-format-standard custom-background col-1c full-width mobile-menu skew-active logged-out">
+
+
+<a class="skip-link screen-reader-text" href="#page">Skip to content</a>
+
+<div id="wrapper">
+	
+	<div id="header-sticky">
+		<header id="header" class="hide-on-scroll-down">
+
+			<div class="group">
+				<p class="site-title"><a href="https://tachella.github.io/" rel="home">Julián Tachella</a></p>
+									<p class="site-description"></p>
+								
+									<nav class="nav-container group" id="nav-header">
+						<div class="nav-toggle"><i class="fas fa-bars"></i></div>
+						<div class="nav-text"></div>
+						<div class="nav-wrap container"><ul id="menu-menu" class="nav container-inner group"><li id="menu-item-313" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-313"><a href="https://tachella.github.io">Publications</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22"><a href="https://tachella.github.io/home/">About me</a></li>
+<li id="menu-item-134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134"><a href="https://tachella.github.io/presentations/">Presentations</a></li>
+<li id="menu-item-305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-305"><a href="https://tachella.github.io/code/">Code</a></li>
+</ul></div>				
+					</nav>
+								
+									<nav class="nav-container group" id="nav-mobile">
+						<div class="nav-toggle"><i class="fas fa-bars"></i></div>
+						<div class="nav-text"></div>
+						<div class="nav-wrap container"><ul id="menu-menu-1" class="nav container-inner group"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-313"><a href="https://tachella.github.io">Publications</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22"><a href="https://tachella.github.io/home/">About me</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134"><a href="https://tachella.github.io/presentations/">Presentations</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-305"><a href="https://tachella.github.io/code/">Code</a></li>
+</ul></div>									
+					</nav>
+								
+			</div>
+			
+		</header>
+	</div>
+	
+	<div class="sidebar s2 group">
+					</div>
+	
+	
+	<div class="container" id="page">
+		<div class="container-inner">			
+			<div class="main">
+				<div class="main-inner group">
+<div class="content">
+	
+			<article id="post-337" class="post-337 post type-post status-publish format-standard has-post-thumbnail hentry category-lidar">	
+			
+			<div class="post-wrapper group">
+				<div class="entry-media">
+									</div>
+				<header class="entry-header group">
+					<h1 class="entry-title">Advances in single-photon lidar for autonomous vehicles</h1>
+					<div class="entry-meta">
+						<span class="entry-date"><i class="far fa-calendar"></i>August 1, 2020</span>
+												<span class="entry-author"><i class="far fa-user"></i><a href="https://tachella.github.io/author/julitakl/" title="Posts by Julián" rel="author">Julián</a></span>
+						<span class="entry-category"><a href="https://tachella.github.io/category/lidar/" rel="category tag">Lidar</a></span>
+					</div>
+				</header>
+				<div class="entry-content">
+					<div class="entry themeform">	
+						<p><strong>Authors:</strong> J. Rapp, J. Tachella, Y. Altmann, S. McLaughlin and V. K. Goyal</p>
+<p><strong>Journal:</strong> IEEE Signal Processing Magazine</p>
+<p><strong>Full paper: </strong><a href="https://ieeexplore.ieee.org/abstract/document/9127841">https://ieeexplore.ieee.org/abstract/document/9127841</a></p>
+<p>We have put together a <strong>comprehensive survey of the latest signal processing techniques for single-photon lidar</strong>, covering</p>
+<ol>
+<li>Statistical modeling of single-photon waveforms (Poisson statistics, dead-time and discretization effects, etc.)</li>
+<li>3D reconstruction algorithms (single depth and multiple depth).</li>
+</ol>
+<p>These algorithms are explained in the <strong>context of autonomous vehicles, an emerging and very promising application of single-photon lidar technology</strong>. See the paper for more details! Code related to some of the algorithms discussed in the paper can be found <a href="https://tachella.github.io/code/">here</a> and <a href="https://ieeexplore.ieee.org/document/7932527/algorithms?tabFilter=code#algorithms">here</a>.</p>
+<p><strong>Abstract: </strong>The safety and success of autonomous vehicles (AVs) depend on their ability to accurately map and respond to their surroundings in real time. One of the most promising recent technologies for depth mapping is single-photon lidar (SPL), which measures the time of flight of individual photons. The long-range capabilities (kilometers), excellent depth resolution (centimeters), and use of low-power (eye-safe) laser sources renders this modality a strong candidate for use in AVs. While presenting unique opportunities, the remarkable sensitivity of single-photon detectors introduces several signal processing challenges. The discrete nature of photon counting and the particular design of the detection devices means the acquired signals cannot be treated as arising in a linear system with additive Gaussian noise. Moreover, the number of useful photon detections may be small despite a large data volume, thus requiring careful modeling and algorithmic design for real-time performance. This article discusses the main working principles of SPL and summarizes recent advances in signal processing techniques for this modality, highlighting promising applications in AVs as well as a number of challenges for vehicular lidar that cannot be solved by better hardware alone.</p>
+												<div class="clear"></div>				
+					</div>
+				</div>
+				<div class="entry-footer group">
+					
+										
+					<div class="clear"></div>
+					
+										
+										
+						<ul class="post-nav group">
+		<li class="next"><a href="https://tachella.github.io/2020/09/01/the-neural-tangent-denoiser/" rel="next"><i class="fas fa-chevron-right"></i><strong>Next</strong> <span>The neural tangent denoiser</span></a></li>
+		<li class="previous"><a href="https://tachella.github.io/2019/12/13/real-time-color-3d-reconstruction-from-single-photon-lidar-data/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous</strong> <span>Real-time 3D color imaging with single-photon lidar data</span></a></li>
+	</ul>
+
+										
+				</div>
+			</div>
+
+		</article>
+
+				
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<footer id="footer">
+	
+					
+				
+		<div id="footer-bottom">
+			
+			<a id="back-to-top" href="#"><i class="fas fa-angle-up"></i></a>
+				
+			<div class="pad group">
+				
+				<div class="grid one-full">
+					
+										
+					<div id="copyright">
+													<p>Copyright © Julián Tachella 2020. Contact: first.last@ed.ac.uk</p>
+											</div>
+					
+										
+										
+				</div>
+							
+			</div>
+
+		</div>
+
+	</footer>
+	
+</div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js?ver=5.6.1" id="mathjax-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jquery.fitvids.js" id="gridzone-fitvids-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/jq-sticky-anything.min.js" id="gridzone-jq-sticky-anything-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/imagesloaded.pkgd.min.js" id="gridzone-imagesloaded-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/masonry.pkgd.min.js" id="gridzone-masonry-js"></script>
+<script type="text/javascript" src="https://tachella.github.io/wp-content/themes/gridzone/js/scripts.js" id="gridzone-scripts-js"></script>
+	<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	</body>
+</html>
