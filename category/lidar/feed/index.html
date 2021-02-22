@@ -12,7 +12,7 @@
 	<atom:link href="https://tachella.github.io//category/lidar/feed/" rel="self" type="application/rss+xml" />
 	<link>http://tachella.github.io//</link>
 	<description></description>
-	<lastBuildDate>Sat, 20 Feb 2021 20:34:52 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 22 Feb 2021 10:04:17 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -50,7 +50,7 @@
 
 
 
-<p>Single-photon lidar is an emerging ranging technique that can obtain 3D information at kilometre distance with centimetre precision, and has important applications in <a href="https://tachella.github.io//2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/" data-type="post" data-id="337">self-driving cars</a>, forest canopy monitoring, <a href="https://tachella.github.io//2020/09/01/seeing-around-corners-with-edge-resolved-transient-imaging/" data-type="post" data-id="429">non-line-of-sight imaging</a> and more. This modality consists of contracting a histogram of time-of-arrival of individual photons per pixel. For each object in the line-of-sight of the device, there is a peak in the histogram. These peaks are found by a 3D reconstruction algorithm that takes into account the Poisson statistics of the photon-count data, while promoting spatial smoothness in the reconstructed point clouds. In a previous post, I presented <a href="https://tachella.github.io//2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/" data-type="post" data-id="210">an algorithm</a> that can find multiple peaks per pixel in a matter of milliseconds even in challenging very long range scenarios with high background noise. As the algorithm needs to process the histogram data, the reconstruction time depends (linearly) on the total number of non-zero bins in the histogram:</p>
+<p>Single-photon lidar is an emerging ranging technique that can obtain 3D information at kilometre distance with centimetre precision, and has important applications in <strong><a href="https://tachella.github.io//2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/" data-type="post" data-id="337">self-driving cars</a>, forest canopy monitoring, <a href="https://tachella.github.io//2020/09/01/seeing-around-corners-with-edge-resolved-transient-imaging/" data-type="post" data-id="429">non-line-of-sight imaging</a> </strong>and more. This modality consists of contracting a histogram of time-of-arrival of individual photons per pixel. For each object in the line-of-sight of the device there is a peak in the histogram. These peaks are found by a 3D reconstruction algorithm that takes into account the Poisson statistics of the photon-count data, while promoting spatial smoothness in the reconstructed point clouds. In a previous post, I presented <a href="https://tachella.github.io//2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/" data-type="post" data-id="210">an algorithm</a> that can find multiple peaks per pixel in a matter of milliseconds even in challenging very long range scenarios with high background noise. As the algorithm needs to process the histogram data, the <strong>reconstruction time</strong> depends (linearly) on the total number of non-zero bins in the histogram:</p>
 
 
 
@@ -58,7 +58,7 @@
 
 
 
-<p>As single-photon lidar arrays get bigger and faster, the number of photons collected per histograms gets bigger, while there is an increased need for faster real-time frame rates. The volume of photon data that needs to be transmitted is ever-increasingly large, generating a <strong>data transfer bottleneck</strong>. Moreover, reconstruction algorithms are required to deal with ever-increasingly large and dense histograms, generating a <strong>computational bottleneck</strong>. So far, most attempts to alleviate these bottlenecks consisted in building coarser histograms. Despite reducing the amount of information to be transferred and processed, this approach sacrifices important depth resolution.</p>
+<p>As single-photon lidar arrays get bigger and faster, the number of photons collected per histogram gets bigger, while there is an increased need for faster real-time frame rates. The volume of photon data that needs to be transmitted is ever-increasingly large, generating a <strong>data transfer bottleneck</strong>. Moreover, reconstruction algorithms are required to deal with ever-increasingly large and dense histograms, generating a <strong>computational bottleneck</strong>. So far, most attempts to alleviate these bottlenecks consisted in building coarser histograms. Despite reducing the amount of information to be transferred and processed, this approach sacrifices important depth resolution.</p>
 
 
 
@@ -74,7 +74,7 @@
 
 
 
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png" alt="" class="wp-image-502" width="387" height="421" srcset="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png 942w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-276x300.png 276w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-768x835.png 768w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-1414x1536.png 1414w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-520x565.png 520w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-940x1021.png 940w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2.png 1559w" sizes="(max-width: 387px) 100vw, 387px" /></figure></div>
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png" alt="" class="wp-image-502" width="544" height="592" srcset="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png 942w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-276x300.png 276w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-768x835.png 768w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-1414x1536.png 1414w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-520x565.png 520w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-940x1021.png 940w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2.png 1559w" sizes="(max-width: 544px) 100vw, 544px" /><figcaption>Fig. 2: Compressing the data with our proposed method does not incur in significant loss of information, whereas using attaining the same amount of compression via coarse binning the histograms results in a massive loss of information.</figcaption></figure></div>
 
 
 
