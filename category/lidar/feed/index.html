@@ -9,32 +9,133 @@
 
 <channel>
 	<title>Lidar &#8211; Julián Tachella</title>
-	<atom:link href="https://tachella.github.io/category/lidar/feed/" rel="self" type="application/rss+xml" />
-	<link>http://tachella.github.io/</link>
+	<atom:link href="https://tachella.github.io//category/lidar/feed/" rel="self" type="application/rss+xml" />
+	<link>http://tachella.github.io//</link>
 	<description></description>
-	<lastBuildDate>Tue, 01 Sep 2020 18:16:49 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 20 Feb 2021 20:34:52 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=5.5</generator>
+	<generator>https://wordpress.org/?v=5.6.1</generator>
 
 <image>
-	<url>https://tachella.github.io/wp-content/uploads/2019/10/cropped-me-1-150x150.jpg</url>
+	<url>https://tachella.github.io//wp-content/uploads/2019/10/cropped-me-1-150x150.jpg</url>
 	<title>Lidar &#8211; Julián Tachella</title>
-	<link>http://tachella.github.io/</link>
+	<link>http://tachella.github.io//</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
+		<title>A sketching framework for reduced data transfer in photon counting lidar</title>
+		<link>https://tachella.github.io//2021/02/20/a-sketching-framework-for-reduced-data-transfer-in-photon-counting-lidar/</link>
+		
+		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Sat, 20 Feb 2021 18:50:39 +0000</pubDate>
+				<category><![CDATA[Lidar]]></category>
+		<guid isPermaLink="false">https://tachella.github.io//?p=435</guid>
+
+					<description><![CDATA[Authors:&#160;M. P. Sheehan, J. Tachella and M. Davies Preprint:&#160;https://arxiv.org/abs/2102.08732 Online codes:&#160;https://gitlab.com/Tachella/sketched_lidar Single-photon lidar is an emerging ranging technique that can obtain 3D information at kilometre distance with centimetre precision, and has important applications in self-driving cars, forest canopy monitoring, non-line-of-sight imaging and more. This modality consists of contracting a histogram of time-of-arrival of individual photons&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Authors:</strong>&nbsp;M. P. Sheehan, J. Tachella and M. Davies</p>
+
+
+
+<p><strong>Preprint:&nbsp;</strong><a href="https://www.nature.com/articles/s41467-020-19727-4"></a><a href="https://arxiv.org/abs/2102.08732">https://arxiv.org/abs/2102.08732</a></p>
+
+
+
+<p><strong>Online codes:&nbsp;</strong><a href="https://gitlab.com/Tachella/sketched_lidar">https://gitlab.com/Tachella/sketched_lidar</a></p>
+
+
+
+<p>Single-photon lidar is an emerging ranging technique that can obtain 3D information at kilometre distance with centimetre precision, and has important applications in <a href="https://tachella.github.io//2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/" data-type="post" data-id="337">self-driving cars</a>, forest canopy monitoring, <a href="https://tachella.github.io//2020/09/01/seeing-around-corners-with-edge-resolved-transient-imaging/" data-type="post" data-id="429">non-line-of-sight imaging</a> and more. This modality consists of contracting a histogram of time-of-arrival of individual photons per pixel. For each object in the line-of-sight of the device, there is a peak in the histogram. These peaks are found by a 3D reconstruction algorithm that takes into account the Poisson statistics of the photon-count data, while promoting spatial smoothness in the reconstructed point clouds. In a previous post, I presented <a href="https://tachella.github.io//2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/" data-type="post" data-id="210">an algorithm</a> that can find multiple peaks per pixel in a matter of milliseconds even in challenging very long range scenarios with high background noise. As the algorithm needs to process the histogram data, the reconstruction time depends (linearly) on the total number of non-zero bins in the histogram:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://tachella.github.io//wp-content/uploads/2021/02/timing_bins-1.png" alt="" class="wp-image-477" width="509" height="241"/><figcaption>Fig. 1: Execution time of a 3D reconstruction algorithm as a function the number of non-zero bins in the collected time-of-arrival histograms (from <a href="https://www.nature.com/articles/s41467-019-12943-7">this paper</a>).</figcaption></figure></div>
+
+
+
+<p>As single-photon lidar arrays get bigger and faster, the number of photons collected per histograms gets bigger, while there is an increased need for faster real-time frame rates. The volume of photon data that needs to be transmitted is ever-increasingly large, generating a <strong>data transfer bottleneck</strong>. Moreover, reconstruction algorithms are required to deal with ever-increasingly large and dense histograms, generating a <strong>computational bottleneck</strong>. So far, most attempts to alleviate these bottlenecks consisted in building coarser histograms. Despite reducing the amount of information to be transferred and processed, this approach sacrifices important depth resolution.</p>
+
+
+
+<p>Here, we propose a sketching method to massively <strong>compress the histograms without any significant loss of information</strong>, removing the data and computational bottlenecks. The technique builds on recent advances in <a href="https://arxiv.org/abs/1706.07180">compressive learning</a>, a theory for compressing distributions. The compressed data consists of a series of $K$ statistics </p>
+
+
+
+<p>$$\Phi_k(t) = [\cos(w_k t),  \sin(w_kt)]^{T} \quad \text{for} \quad k=1, \dots, K$$</p>
+
+
+
+<p>where $t$ denotes the time of arrival. The statistics can be <strong>computed on-the-fly</strong>, i.e. updated with each photon arrival, hence completely by-passing the need to construct a histogram. Below you can see the large difference between reducing the data by coarse binning the histogram and our proposed method:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png" alt="" class="wp-image-502" width="387" height="421" srcset="https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-942x1024.png 942w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-276x300.png 276w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-768x835.png 768w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-1414x1536.png 1414w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-520x565.png 520w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2-940x1021.png 940w, https://tachella.github.io//wp-content/uploads/2021/02/compressivelidar2.png 1559w" sizes="(max-width: 387px) 100vw, 387px" /></figure></div>
+
+
+
+<p>Please check the paper for more information about the sketching technique!</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Seeing around corners with edge-resolved transient imaging</title>
+		<link>https://tachella.github.io//2020/09/01/seeing-around-corners-with-edge-resolved-transient-imaging/</link>
+		
+		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Tue, 01 Sep 2020 18:36:00 +0000</pubDate>
+				<category><![CDATA[Lidar]]></category>
+		<category><![CDATA[Low-photon imaging]]></category>
+		<guid isPermaLink="false">https://tachella.github.io//?p=429</guid>
+
+					<description><![CDATA[Authors:&#160;J. Rapp*, C. Saunders*, J. Tachella*, J. Murray-Bruce, Y. Altmann, J-Y. Tourneret, S. McLaughlin, R. Dawson, F. Wong and V. K. Goyal. *Equal contribution Full paper:&#160;https://www.nature.com/articles/s41467-020-19727-4 Journal:&#160;Nature Communications Online codes:&#160;https://github.com/Computational-Periscopy/ERTI/ Seeing around the corners is a task that may sound&#160;impossible at first glance. This task has many important applications, such as&#160;anticipatory imaging in self-driving cars,&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Authors:</strong>&nbsp;J. Rapp*, C. Saunders*, J. Tachella*, J. Murray-Bruce, Y. Altmann, J-Y. Tourneret, S. McLaughlin, R. Dawson, F. Wong and V. K. Goyal. *Equal contribution</p>
+
+
+
+<p><strong>Full paper:&nbsp;</strong><a href="https://www.nature.com/articles/s41467-020-19727-4">https://www.nature.com/articles/s41467-020-19727-4</a></p>
+
+
+
+<p><strong>Journal:&nbsp;</strong>Nature Communications</p>
+
+
+
+<p><strong>Online codes:&nbsp;</strong><a href="https://github.com/Computational-Periscopy/ERTI/">https://github.com/Computational-Periscopy/ERTI/</a></p>
+
+
+
+<p>Seeing around the corners is a task that may sound&nbsp;<strong>impossible at first glance</strong>. This task has many important applications, such as&nbsp;<strong>anticipatory imaging in self-driving cars, planetary exploration or search and rescue operations</strong>. In this paper, we present a novel imaging technique which allows to obtain 2.5 dimensional information about hidden (non-line-of-sight) scenes. Our method obtains angular information using corners and depth information using a time-resolved camera (a single-photon lidar). Recovering the hidden room configuration constitutes&nbsp;<strong>non-linear inverse problem</strong>, which we solve by proposing a careful modelling of the measurement operator (the light transport equation) and a reconstruction algorithm which exploits our prior knowledge about plausible configurations.</p>
+
+
+
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class="video-container"><iframe title="Seeing Around Corners with Edge-Resolved Transient Imaging" width="740" height="416" src="https://www.youtube.com/embed/1MDwFVky-wg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+</div></figure>
+
+
+
+<p>Check the paper for more details!</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
 		<title>Advances in single-photon lidar for autonomous vehicles</title>
-		<link>https://tachella.github.io/2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/</link>
+		<link>https://tachella.github.io//2020/08/01/advances-in-single-photon-lidar-for-autonomous-vehicles/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Sat, 01 Aug 2020 12:17:56 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=337</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=337</guid>
 
 					<description><![CDATA[Authors: J. Rapp, J. Tachella, Y. Altmann, S. McLaughlin and V. K. Goyal Journal: IEEE Signal Processing Magazine Full paper: https://ieeexplore.ieee.org/abstract/document/9127841 We have put together a comprehensive survey of the latest signal processing techniques for single-photon lidar, covering Statistical modeling of single-photon waveforms (Poisson statistics, dead-time and discretization effects, etc.) 3D reconstruction algorithms (single depth&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Rapp, J. Tachella, Y. Altmann, S. McLaughlin and V. K. Goyal</p>
@@ -45,7 +146,7 @@
 <li>Statistical modeling of single-photon waveforms (Poisson statistics, dead-time and discretization effects, etc.)</li>
 <li>3D reconstruction algorithms (single depth and multiple depth).</li>
 </ol>
-<p>These algorithms are explained in the <strong>context of autonomous vehicles, an emerging and very promising application of single-photon lidar technology</strong>. See the paper for more details! Code related to some of the algorithms discussed in the paper can be found <a href="https://tachella.github.io/code/">here</a> and <a href="https://ieeexplore.ieee.org/document/7932527/algorithms?tabFilter=code#algorithms">here</a>.</p>
+<p>These algorithms are explained in the <strong>context of autonomous vehicles, an emerging and very promising application of single-photon lidar technology</strong>. See the paper for more details! Code related to some of the algorithms discussed in the paper can be found <a href="https://tachella.github.io//code/">here</a> and <a href="https://ieeexplore.ieee.org/document/7932527/algorithms?tabFilter=code#algorithms">here</a>.</p>
 <p><strong>Abstract: </strong>The safety and success of autonomous vehicles (AVs) depend on their ability to accurately map and respond to their surroundings in real time. One of the most promising recent technologies for depth mapping is single-photon lidar (SPL), which measures the time of flight of individual photons. The long-range capabilities (kilometers), excellent depth resolution (centimeters), and use of low-power (eye-safe) laser sources renders this modality a strong candidate for use in AVs. While presenting unique opportunities, the remarkable sensitivity of single-photon detectors introduces several signal processing challenges. The discrete nature of photon counting and the particular design of the detection devices means the acquired signals cannot be treated as arising in a linear system with additive Gaussian noise. Moreover, the number of useful photon detections may be small despite a large data volume, thus requiring careful modeling and algorithmic design for real-time performance. This article discusses the main working principles of SPL and summarizes recent advances in signal processing techniques for this modality, highlighting promising applications in AVs as well as a number of challenges for vehicular lidar that cannot be solved by better hardware alone.</p>
 ]]></content:encoded>
 					
@@ -54,12 +155,12 @@
 			</item>
 		<item>
 		<title>Real-time 3D color imaging with single-photon lidar data</title>
-		<link>https://tachella.github.io/2019/12/13/real-time-color-3d-reconstruction-from-single-photon-lidar-data/</link>
+		<link>https://tachella.github.io//2019/12/13/real-time-color-3d-reconstruction-from-single-photon-lidar-data/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Fri, 13 Dec 2019 15:16:45 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=272</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=272</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret Conference: IEEE CAMSAP 2019, Guadaloupe, West Indies Full paper:&#160;https://ieeexplore.ieee.org/document/9022496/ Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Slides: CAMSAP19 from Julián Andrés Tachella Abstract: Single-photon lidar devices can acquire 3D data at very long range with high precision. Moreover, recent advances in lidar arrays have enabled acquisitions at very high&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, S. McLaughlin and J-.Y. Tourneret</p>
@@ -79,12 +180,12 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 			</item>
 		<item>
 		<title>Real-time 3D reconstruction from single-photon lidar data using plug-and-play point cloud denoisers</title>
-		<link>https://tachella.github.io/2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/</link>
+		<link>https://tachella.github.io//2019/10/29/real-time-3d-reconstruction-from-single-photon-lidar-data-using-plug-and-play-point-cloud-denoisers/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Tue, 29 Oct 2019 11:42:10 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=210</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=210</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: Nature Communications Full paper:  www.nature.com/articles/s41467-019-12943-7 Online codes: gitlab.com/Tachella/real-time-single-photon-lidar Abstract: Single-photon lidar has emerged as a prime candidate technology for depth imaging through challenging environments. Until now, a major limitation has been the significant amount of time&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, N. Mellado, R. Tobin, A. McCarthy, G. S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
@@ -101,12 +202,12 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 			</item>
 		<item>
 		<title>Bayesian 3D Reconstruction of subsampled multispectral lidar signals</title>
-		<link>https://tachella.github.io/2019/10/01/multispectral-lidar/</link>
+		<link>https://tachella.github.io//2019/10/01/multispectral-lidar/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Tue, 01 Oct 2019 11:07:29 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=189</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=189</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Journal: IEEE Transactions on Computational Imaging Full paper: https://ieeexplore.ieee.org/document/8854866 Online codes: https://gitlab.com/Tachella/musapop Abstract: Light detection and ranging (lidar) single-photon devices capture range and intensity information from a 3D scene. This modality enables long range 3D reconstruction with high range precision and&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
@@ -122,12 +223,12 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 			</item>
 		<item>
 		<title>Fast surface detection in single-photon lidar waveforms</title>
-		<link>https://tachella.github.io/2019/09/05/fast-surface-detection-in-single-photon-lidar-waveforms/</link>
+		<link>https://tachella.github.io//2019/09/05/fast-surface-detection-in-single-photon-lidar-waveforms/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Thu, 05 Sep 2019 11:20:00 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=194</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=194</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin Conference: European Signal Processing Conference (EUSIPCO), La Coruña, Spain (2019) Full paper: https://pureapps2.hw.ac.uk/ws/portalfiles/portal/25197816/PID5986663.pdf Extension: A multi-resolution version of this method was published here. Online codes: https://gitlab.com/Tachella/lidardetection Presentation slides: EUSIPCO19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) devices can&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors</strong>: J. Tachella, Y. Altmann, M. Márquez, H. Arguello-Fuentes, J-.Y. Tourneret and S. McLaughlin</p>
@@ -148,12 +249,12 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 			</item>
 		<item>
 		<title>3D Reconstruction using single-photon lidar data: Exploiting the widths of the returns</title>
-		<link>https://tachella.github.io/2019/05/05/estimating-the-widths-of-the-returns/</link>
+		<link>https://tachella.github.io//2019/05/05/estimating-the-widths-of-the-returns/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Sun, 05 May 2019 10:43:53 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=181</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=181</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, J-.Y. Tourneret and S. McLaughlin Conference: International Conference on Acoustics, Speech and Signal Processing (ICASSP), Brighton, 2019. Full-text: https://ieeexplore.ieee.org/abstract/document/8683075 Short presentation: ICASSP19 from Julián Andrés Tachella Abstract: Single-photon light detection and ranging (lidar) data can be used to capture depth and intensity profiles of a 3D scene. In a general setting, the&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<h5>Authors:</h5>
@@ -173,12 +274,12 @@ arrays have enabled acquisitions at very high frame rates. However, these device
 			</item>
 		<item>
 		<title>Bayesian 3D reconstruction of complex scenes from single-photon lidar data</title>
-		<link>https://tachella.github.io/2019/01/21/bayesian-3d-reconstruction-of-complex-scenes-from-single-photon-lidar-data/</link>
+		<link>https://tachella.github.io//2019/01/21/bayesian-3d-reconstruction-of-complex-scenes-from-single-photon-lidar-data/</link>
 		
 		<dc:creator><![CDATA[Julián]]></dc:creator>
 		<pubDate>Mon, 21 Jan 2019 17:29:26 +0000</pubDate>
 				<category><![CDATA[Lidar]]></category>
-		<guid isPermaLink="false">https://tachella.github.io/?p=44</guid>
+		<guid isPermaLink="false">https://tachella.github.io//?p=44</guid>
 
 					<description><![CDATA[Authors: J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin Journal: SIAM Journal on Imaging Sciences Full paper:  https://epubs.siam.org/doi/10.1137/18M1183972 Online codes: https://gitlab.com/Tachella/Manipop Short presentation: Abstract: Light detection and ranging (Lidar) data can be used to capture the depth and intensity profile of a 3D scene. This modality relies on constructing,&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, Y. Altmann, X. Ren, A. McCarthy, G.S. Buller, J-.Y. Tourneret and S. McLaughlin</p>
