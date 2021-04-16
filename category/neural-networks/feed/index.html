@@ -12,13 +12,13 @@
 	<atom:link href="https://tachella.github.io//category/neural-networks/feed/" rel="self" type="application/rss+xml" />
 	<link>http://tachella.github.io//</link>
 	<description></description>
-	<lastBuildDate>Thu, 04 Mar 2021 19:59:37 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 16 Apr 2021 14:05:58 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=5.6.2</generator>
+	<generator>https://wordpress.org/?v=5.6.3</generator>
 
 <image>
 	<url>https://tachella.github.io//wp-content/uploads/2019/10/cropped-me-1-150x150.jpg</url>
@@ -28,6 +28,59 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Equivariant imaging: Learning beyond the range space</title>
+		<link>https://tachella.github.io//2021/04/16/equivariant-imaging-learning-beyond-the-range-space/</link>
+		
+		<dc:creator><![CDATA[Julián]]></dc:creator>
+		<pubDate>Fri, 16 Apr 2021 12:38:37 +0000</pubDate>
+				<category><![CDATA[neural networks]]></category>
+		<guid isPermaLink="false">https://tachella.github.io//?p=552</guid>
+
+					<description><![CDATA[Authors: D. Chen, J. Tachella and M. Davies Preprint: https://arxiv.org/abs/2006.02379 Online codes: To be released soon. Inverse problems are ubiquitous in signal and image processing. In most applications, we need to reconstruct an underlying signal $x\in\mathbb{R}^{n}$, from some measurements $y\in\mathbb{R}^{m}$, that is, invert the forward measurement process, $$y = Ax+n$$ where $n$ represents some noise&#46;&#46;&#46;]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Authors:</strong> D. Chen, J. Tachella and M. Davies</p>
+
+
+
+<p><strong>Preprint: </strong><a href="https://arxiv.org/abs/2006.02379">https://arxiv.org/abs/2006.02379</a></p>
+
+
+
+<p><strong>Online codes: </strong><em>To be released soon.</em></p>
+
+
+
+<p>Inverse problems are ubiquitous in signal and image processing. In most applications, we need to reconstruct an underlying signal $x\in\mathbb{R}^{n}$, from some measurements $y\in\mathbb{R}^{m}$, that is, invert the forward measurement process, $$y = Ax+n$$ where $n$ represents some noise and $A$ is the forward operator. Due to the ill-posed nature of $A$ (we generally have $m&lt;n$) and noise, there are multiple possible solutions $x$ for a given $y$. Fortunately, the set of plausible (natural) signals $x$ lie in a small low-dimensional set $\mathcal{X}$ of the whole of $\mathbb{R}^{n}$, so we can have a unique $x$ for a given $y$.</p>
+
+
+
+<p>The traditional approach is to build a mathematical model to describe $\mathcal{X}$ leveraging some prior knowledge about the underlying signals (e.g. natural images can be described as piecewise smooth). However, this a hard task which is problem-dependent and it is generally a loose description of the true $\mathcal{X}$.</p>
+
+
+
+<p>In recent years, an alternative approach is to learn inverse mapping from $y\mapsto x$ directly from training data, bypassing the need to design a prior model. Fuelled by the powerful learning bias of deep convolutional neural networks (interest readers can have a look at my <a href="https://tachella.github.io//2020/09/01/the-neural-tangent-denoiser/" data-type="post" data-id="344">previous post</a> about understanding this implicit bias), the goal is to learn a function $x=f(y)$ from training pairs $(x_i,y_i)$. The fundamental limitation of this approach is that in many real world applications we can only access $y$. Training only with the $y_i$ (enforcing measurement consistency) accounts to finding an $f$ such that $y=A f(y)$. Unfortunately this is doomed to fail, as there are infinite possible functions $f$ that can fit the measurements perfectly well! This is because any $f$ can output any value in the nullspace of $A$ and still achieve measurement consistency. In other words, this fundamental limitation is a chicken-and-egg problem:  we cannot learn to solve an inverse problem without solving it first to obtain the ground-truth training data!</p>
+
+
+
+<p>In this paper, we show that this problem can be overcome by adding a small assumption to the underlying set of signals $\mathcal{X}$: invariance. It is well-known that most natural signals posses some kind of invariance. For example, images are generally invariant to shifts or rotations. Hence, the whole sensing process $x = (f \circ A) (x)$ is necessarily an equivariant function, that is, given a transformation $T_g$ (e.g. a shift), we have that $$T_gx = (f\circ A) (T_gx)$$. The invariance gives us information of the nullspace of A, which boils down to the following observation: $$y=Ax = AT_g x&#8217;  = A_g x&#8217;$$ which just relies on the fact that $x&#8217;= T_gx$ is another valid signal. Hence we can see beyond the range space of $A$, as we have an implicit access to multiple different operators  $A_g = AT_g$ for all possible transformations $T_1,\dots,T_{G}$.  </p>
+
+
+
+<p>We show that this invariance constraint on $(f\circ A)$ can be easily incorporated as an additional loss term when training a deep network. Our experiments show that for the computed tomography and inpaiting problems,  the equivariant learning approach (only having access to measurements $y_i$) performs as well as the fully supervised case i.e. having training pairs with ground-truth data (x_i,y_i), by-passing the fundamental limitation of learning to solve inverse problems. Check the paper for more details!</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="856" height="358" src="https://tachella.github.io//wp-content/uploads/2021/04/post_invariant-1.png" alt="" class="wp-image-630" srcset="https://tachella.github.io//wp-content/uploads/2021/04/post_invariant-1.png 856w, https://tachella.github.io//wp-content/uploads/2021/04/post_invariant-1-300x125.png 300w, https://tachella.github.io//wp-content/uploads/2021/04/post_invariant-1-768x321.png 768w, https://tachella.github.io//wp-content/uploads/2021/04/post_invariant-1-520x217.png 520w" sizes="(max-width: 856px) 100vw, 856px" /><figcaption>The proposed equivariant imaging learning framework can learn the reconstruction function only using compressed samples $y_i$ and still perform as well as a fully trained network which requires ground-truth pairs $(x_i,y_i)$. On the contrary, only enforcing measurement consistency is not enough to learn the reconstruction function.</figcaption></figure></div>
+
+
+
+<p></p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
 		<title>The neural tangent link between CNN denoisers and non-local filters</title>
 		<link>https://tachella.github.io//2020/09/01/the-neural-tangent-denoiser/</link>
 		
@@ -36,9 +89,10 @@
 				<category><![CDATA[neural networks]]></category>
 		<guid isPermaLink="false">https://tachella.github.io//?p=344</guid>
 
-					<description><![CDATA[Authors: J. Tachella, J. Tang and M. Davies Full paper: https://arxiv.org/abs/2006.02379 Online codes: https://gitlab.com/Tachella/neural_tangent_denoiser Convolutional neural networks (CNNs) are a well-established tool for solving computational imaging problems.  It has been recently shown that, despite being highly overparameterized (more weights than pixels), networks trained with a single corrupted image can still perform as well as fully trained&#46;&#46;&#46;]]></description>
+					<description><![CDATA[Authors: J. Tachella, J. Tang and M. Davies Full paper: To appear in CVPR 2021.  Preprint: https://arxiv.org/abs/2006.02379 Online codes: https://gitlab.com/Tachella/neural_tangent_denoiser Convolutional neural networks (CNNs) are a well-established tool for solving computational imaging problems.  It has been recently shown that, despite being highly overparameterized (more weights than pixels), networks trained with a single corrupted image can&#46;&#46;&#46;]]></description>
 										<content:encoded><![CDATA[<p><strong>Authors:</strong> J. Tachella, J. Tang and M. Davies</p>
-<p><strong>Full paper: </strong><a href="https://arxiv.org/abs/2006.02379">https://arxiv.org/abs/2006.02379</a></p>
+<p><strong>Full paper: </strong><em>To appear in </em>CVPR 2021<em>.</em><strong> </strong></p>
+<p><strong>Preprint: </strong><a href="https://arxiv.org/abs/2006.02379">https://arxiv.org/abs/2006.02379</a></p>
 <p><strong>Online codes: </strong><a href="https://gitlab.com/Tachella/neural_tangent_denoiser">https://gitlab.com/Tachella/neural_tangent_denoiser</a></p>
 <p>Convolutional neural networks (CNNs) are a well-established tool for solving computational imaging problems.  It has been recently shown that, despite being highly overparameterized (more weights than pixels), networks trained with a single corrupted image can still perform as well as fully trained networks (<em>a.k.a. <a href="https://dmitryulyanov.github.io/deep_image_prior">the deep image prior</a></em>).  These results highlight that <strong>CNNs posses a very powerful learning bias towards natural images</strong>, which explains their great success in recent years. Multiple intriguing question arise:</p>
 <ol>
