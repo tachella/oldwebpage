@@ -1,8 +1,8 @@
 /*
 Theme Name: Gridzone
 Theme URI: http://alx.media/themes/gridzone/
-Version: 1.1.5
-Description: <a href="http://alx.media/themes/gridzone/">Gridzone</a> is a flexible portfolio theme with plenty of options. It is optimized for all devices and built to work with blocks. You can choose between light and dark theme, widget sidebar to the left or right - or no sidebar at all. Demo: http://demo.alx.media/x/?theme=Gridzone
+Version: 1.1.0
+Description: <a href="http://alx.media/themes/gridzone/">Gridzone</a> is a flexible portfolio theme with plenty of options. It is optimized for all devices and built to work with blocks. You can choose between light and dark theme, widget sidebar to the left or right - or no sidebar at all.
 Author: Alexander Agnarson
 Author URI: http://alx.media
 Tags: portfolio, photography, blog, one-column, two-columns, right-sidebar, left-sidebar, custom-colors, custom-menu, featured-images, flexible-header, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, custom-logo, custom-header, custom-background
@@ -90,6 +90,25 @@ strong { font-weight: 600; }
 /*  base : font awesome square size
 /* ------------------------------------ */
 .fa, .fab, .fal, .far, .fas { width: 1em; text-align: center; }
+
+/* temporary font awesome 5 fix for alx-extensions plugin */
+.sharrre-header .share .fa:before,
+.sharrre-footer .share .fa:before { font-family: "Font Awesome 5 Brands"; font-style: normal; font-variant: normal; text-rendering: auto; line-height: 1; }
+.sharrre-header .fa-twitter:before { content: "\f099"; }
+.sharrre-header .fa-facebook-square:before { content: "\f082"; }
+.sharrre-header .fa-pinterest:before { content: "\f0d2"; }
+.sharrre-header .fa-linkedin-square:before { content: "\f08c"; }
+.sharrre-header .count .fa:before,
+.sharrre-footer .count .fa:before,
+.alx-tabs-nav i:before { font-family: "Font Awesome 5 Free"; font-weight: 900; font-style: normal; font-variant: normal; text-rendering: auto; line-height: 1; }
+.sharrre-header .count .fa-plus:before { content: "\f067"; }
+.sharrre-footer .count .fa-plus:before { content: "\f067"; }
+.sharrre-footer .fa-twitter:before { content: "\f099"; }
+.sharrre-footer .fa-facebook-square:before { content: "\f082"; }
+.alx-tabs-nav .fa-clock-o:before { content: "\f017"; }
+.alx-tabs-nav .fa-star:before { content: "\f005"; }
+.alx-tabs-nav .fa-comments-o:before { content: "\f086"; }
+.alx-tabs-nav .fa-tags:before { content: "\f02c"; }
 
 /*  base : fonts
 /* ------------------------------------ */
@@ -340,25 +359,19 @@ h1, h2, h3, h4, h5, h6 { color: #333; font-weight: 300; -ms-word-wrap: break-wor
 .entry ol li,
 .entry ol ul ol li { list-style: decimal; }
 
-/* block : common */
-.entry .wp-block-image figcaption,
-.entry .wp-block-audio figcaption,
-.entry .wp-block-embed figcaption { font-size: 14px; text-align: center; }
-
 /* block : image */
 .entry .wp-block-image {  }
 
 /* block : gallery */
-.entry .wp-block-gallery { padding: 0; margin-left: 0; }
-.entry .wp-block-gallery .blocks-gallery-grid { margin: 0; padding: 0; }
+.entry .wp-block-gallery { padding: 0; }
+.entry .wp-block-gallery { margin-left: 0; }
 .entry .wp-block-gallery .blocks-gallery-item figcaption { box-sizing: border-box; }
 
 /* block : cover */
 .entry .wp-block-cover {  }
 
 /* block : quote */
-.entry .wp-block-quote { margin-bottom: 20px; }
-.entry .wp-block-quote.is-large { padding-left: 50px; }
+.entry .wp-block-quote {  }
 
 /* block : audio */
 .entry .wp-block-audio {  }
@@ -377,11 +390,12 @@ h1, h2, h3, h4, h5, h6 { color: #333; font-weight: 300; -ms-word-wrap: break-wor
 .entry .wp-block-classic {  }
 
 /* block : pullquote */
-.entry .wp-block-pullquote { padding-top: 0; padding-bottom: 0; }
-.entry .wp-block-pullquote.alignleft { margin-right: 2em; }
-.entry .wp-block-pullquote.alignright { margin-left: 2em; }
-.entry .wp-block-pullquote blockquote { padding-left: 50px; text-align: left; }
-.entry .wp-block-pullquote blockquote p { line-height: 1.4em; }
+.entry .wp-block-pullquote { font-weight: 400; padding: 0; }
+.entry .wp-block-pullquote.alignleft { margin-right: 2em; max-width: 305px; }
+.entry .wp-block-pullquote.alignright { margin-left: 2em; max-width: 305px; }
+.entry .wp-block-pullquote blockquote { padding-left: 0; text-align: left; }
+.entry .wp-block-pullquote blockquote:before { display: none; }
+.entry .wp-block-pullquote blockquote p { line-height: 1.4em; color: #444; }
 
 /* block : code */
 .entry .wp-block-code {  }
@@ -731,14 +745,14 @@ box-shadow: 0 0 2px rgba(255,255,255,0.4);
  *  Section: Header
 /* ------------------------------------------------------------------------- */
 #header { background: #fff; position: relative; z-index: 99; padding: 0 40px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-#header-sticky.sticky-element-sticky { pointer-events: none; }
+.sticky-element-sticky #header {  }
 @media only screen and (min-width: 1025px) {
-	#header { pointer-events: auto; -webkit-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+	#header { -webkit-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
 	#header.hide-scroll { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
 }
 
 .s2 { background: #fff; position: fixed; top: 0; left: 0; bottom: 0; width: 80px; z-index: 99; box-shadow: 0 0 10px rgba(0,0,0,0.05), 1px 0 rgba(0,0,0,0.05); }
-.admin-bar .s2 { top: 32px; }
+.admin-bar .s2 { top: 33px; }
 .s2 .social-links { float: left; margin-top: 20px; width: 100%; }
 .s2 .social-links li { margin: 0 auto; padding: 4px 0; width: 100%; position: relative; }
 .s2 .social-links li:before { content:""; height: 1px; background: rgba(0,0,0,0.06); position: absolute; left: 30px; right: 30px; top: 0; }
@@ -910,13 +924,6 @@ box-shadow: 0 0 2px rgba(255,255,255,0.4);
 #footer-bottom #back-to-top { border: 1px solid #e5e5e5; border-top: 0; color: #333; padding: 10px 0; overflow: hidden; text-align: center; width: 60px; height: 30px; display: block; margin: 0 auto; margin: 0 auto 0; border-radius: 0 0 10px 10px; }
 #footer-bottom #back-to-top i { font-size: 38px; position: relative; top: -7px; }
 #footer-bottom #back-to-top:hover { color: #333; }
-#footer-bottom .social-links { padding-top: 40px; float: none; }
-#footer-bottom .social-links a { color: #444; }
-#footer-bottom .social-links a:hover { color: #333; }
-#footer-bottom .social-links li { margin: 0 6px; }
-#footer-bottom .social-links .social-tooltip { font-size: 22px; }
-#footer-bottom .social-links .social-tooltip:hover:after { background: #333; color: #fff; }
-#footer-bottom .social-links .social-tooltip:hover:before { border-color: #333 transparent; }
 
 /*  footer : nav
 /* ------------------------------------ */
@@ -1478,8 +1485,6 @@ li #reply-title { font-size: 0; margin: 0!important; padding: 0; height: 0; bord
 .logged-in #reply-title { margin-bottom: 20px; }
 .logged-in #commentform p.comment-form-comment { margin-top: 10px; }
 .logged-in #commentform p.comment-form-comment label { display: none; }
-#commentform .comment-form-cookies-consent { padding: 10px 0; }
-#commentform .comment-form-cookies-consent label { display: inline; }
 
 
 /* ------------------------------------------------------------------------- *
